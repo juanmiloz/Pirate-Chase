@@ -3,6 +3,7 @@ package structures.graphAdjacencyMatrix;
 import java.util.ArrayList;
 
 import exception.AmountOfDataException;
+import exception.ConnectioDoesNotExistException;
 import exception.EdgeInvalidException;
 
 public class Graph<E> implements GraphInterface<E>{
@@ -28,7 +29,7 @@ public class Graph<E> implements GraphInterface<E>{
 			enlargeMatrix();
 			for(int i = 0; i < edges.length; i++) {
 				if(edges[i]<adjacencyMatrix.length-1) {
-					addEdge(adjacencyMatrix.length-1,edges[i],0);
+					addEdge(adjacencyMatrix.length-1,edges[i],weights[i]);
 				}else {
 					throw new EdgeInvalidException();
 				}
@@ -58,5 +59,15 @@ public class Graph<E> implements GraphInterface<E>{
 	
 	public int getWeight(int vertex1, int vertex2) {
 		return adjacencyMatrix[vertex1][vertex2];
+	}
+	
+	public Vertex getConection(int vertex1, int vertex2) throws ConnectioDoesNotExistException{
+		Vertex<E> answer = null;
+		if(adjacencyMatrix[vertex1][vertex2]!= 0) {
+			answer = vertexes.get(vertex2);
+		}else {
+			throw new ConnectioDoesNotExistException();
+		}
+		return answer;
 	}
 }
