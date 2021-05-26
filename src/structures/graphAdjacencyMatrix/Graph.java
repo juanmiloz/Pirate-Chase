@@ -70,4 +70,19 @@ public class Graph<E> implements GraphInterface<E>{
 		}
 		return answer;
 	}
+	
+	public int[][] floydWarshall(){
+		int[][] matrix = adjacencyMatrix.clone(); 
+		
+		for(int k = 0; k < matrix.length; k++) {
+			for(int i = 0; i < matrix.length; i++) {
+				for(int j = 0; j < matrix.length; j++) {
+					if(matrix[i][j] > (matrix[i][k] + matrix[k][j])) {
+						matrix[i][j] = matrix[i][k] + matrix[k][j];
+					}
+				}
+			}
+		}
+		return matrix;
+	}
 }
