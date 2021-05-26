@@ -19,10 +19,11 @@ public class Main extends PApplet{
 	}
 	
 	public void settings() {
-		size(800,650);
+		size(800,600);
 	}
 	
 	public void draw() {
+		System.out.println("draw");
 		background(00,00,00);
 		switch(screen) {
 			case 1:
@@ -30,17 +31,43 @@ public class Main extends PApplet{
 			break;
 			
 			case 2:
-				
+				text("info",400,450);
 			break;
 			
 			case 3:
-				
+				text("play",400,450);
 			break;
 			
 			case 4:
 				
 			break;
 		}
+		fill(255);
+		text(mouseX+", "+mouseY,mouseX,mouseY );
 	}
+	
+	public void mousePressed() {
+		System.out.println("click");
+		switch(screen) {
+		case 1:
+			screen=menuView.switchScreen();
+		break;
+		
+		case 2:
+			screen=1;
+		break;
+		
+		case 3:
+			screen=1;
+		break;
+		
+		case 4:
+			
+		break;
+	}
+	}
+	
+	
+	
 
 }

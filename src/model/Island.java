@@ -16,6 +16,7 @@ public class Island {
 		this.goodPirate = null;
 	}
 
+	
 	public boolean isRechargeEnergy() {
 		return rechargeEnergy;
 	}
