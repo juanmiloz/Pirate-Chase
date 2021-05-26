@@ -14,5 +14,5 @@ public class Vertex<E> {
 
 	public void setElement(E element) {
 		this.element = element;
-	}
+	}	
 }
