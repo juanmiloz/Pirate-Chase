@@ -2,30 +2,39 @@ package structures.graphArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import model.Island;
 
 public class GraphTest {
 	
 	private Graph<Island> setupScenary1() {
-		Island is = new Island(false, false, false);
-		Vertex<Island> vertex = new Vertex<Island>(is);
-		Graph<Island> graph = new Graph<Island>(vertex);
+		Graph<Island> graph = new Graph<Island>();
 		return graph;
 	}
 	
 	@Test
 	void addVertexTest() {
-		Graph<Island> graphTest = setupScenary1();
-		assertNotNull(graphTest.getRoot());
-		Island is = new Island(true, false, false);
-		Vertex<Island> vertex = new Vertex<Island>(is);
-		graphTest.addVertex(graphTest.getRoot(), vertex, 1, graphTest.getRoot());
-
-		graphTest.addVertex(graphTest.getRoot(), new Vertex<Island>(new Island(false,false,false)), 2, vertex);
-
-		System.out.println(graphTest.getRoot());
-		System.out.println(vertex);
+		Graph<Island> graph = setupScenary1();
+		Island is1 = new Island(false, false, false);
+		Vertex<Island> vt1 = graph.createVertex(is1);
+		graph.addVertex(vt1, null, null);
+		assertNotNull(graph.getRoot());
+		Island is2 = new Island(false, false, false);
+		Vertex<Island> vt2 = graph.createVertex(is2);
+		ArrayList<Vertex<Island>> connections1 = new ArrayList<Vertex<Island>>();
+		connections1.add(vt1);
+		int[] weigths1 = {1};
+		graph.addVertex(vt2, connections1, weigths1);
+		Island is3 = new Island(false, false, false);
+		Vertex<Island> vt3 = graph.createVertex(is3);
+		ArrayList<Vertex<Island>> connections2 = new ArrayList<Vertex<Island>>();
+		connections2.add(vt1);
+		connections2.add(vt2);
+		int[] weigths2 = {3,7};
+		graph.addVertex(vt3, connections2, weigths2);
+		Island is4 = new Island(false, false, false);
 	}
 
 }
