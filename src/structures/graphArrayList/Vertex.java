@@ -9,10 +9,11 @@ public class Vertex<E>{
 	private int dni;
 	private boolean visited;
 	
-	public Vertex(E element) {
+	public Vertex(E element, int dni) {
 		this.setElement(element);
 		this.vertexes = new ArrayList<Partner<E>>();
 		visited = false;
+		setDni(dni);
 	}
 	
 	public ArrayList<Partner<E>> getVertexes() {
@@ -28,8 +29,8 @@ public class Vertex<E>{
 		this.vertexes = vertexes;
 	}
 	
-	public void addVertex(int weight, E element) {
-		Vertex<E> newVertex = new Vertex<>(element);
+	public void addVertex(int weight, E element, int dni) {
+		Vertex<E> newVertex = new Vertex<>(element, dni);
 		Partner<E> newPartner = new Partner<>(weight, newVertex);
 		vertexes.add(newPartner);
 	}
