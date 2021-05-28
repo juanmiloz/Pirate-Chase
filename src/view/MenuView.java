@@ -1,14 +1,12 @@
 package view;
 
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PImage;
 
 public class MenuView {
 
 	private PApplet app;
 	private PImage menu,menuInfo,menuPlay;
-	private String message;
 	
 	public MenuView(PApplet app) {
 		this.app = app; 
@@ -16,9 +14,6 @@ public class MenuView {
 		menu= app.loadImage("images/menu.jpg");
 		menuInfo= app.loadImage("images/menuInfo.jpg");
 		menuPlay= app.loadImage("images/menuPlay.jpg");
-		
-		
-		this.message = null;
 	}
 	
 	public void drawScreen() {
@@ -32,18 +27,6 @@ public class MenuView {
 		}else {
 			app.image(menu,0,0);
 		}
-		
-		
-		
-		/*
-		app.fill(255);
-		
-		app.textAlign(PConstants.CENTER);
-		app.textSize(40);
-		message = "Bienvenido al menu";
-		
-		app.text(message, 400, 300);
-		app.textSize(16);*/
 	}
 	
 	public int switchScreen() {
@@ -56,7 +39,6 @@ public class MenuView {
 		}
 		
 		return screen;
-		
 	}
 
 }

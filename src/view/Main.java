@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class Main extends PApplet{
 
 	private MenuView menuView;
-	private GameView gameEasyView;
+	private DificultView dificultView;
 	private int screen;
 	
 	public static void main(String args[]) {
@@ -15,7 +15,7 @@ public class Main extends PApplet{
 	public void setup() {
 		screen = 1;
 		menuView = new MenuView(this);
-		gameEasyView = new GameView(this);
+		dificultView = new DificultView(this); 
 	}
 	
 	public void settings() {
@@ -31,10 +31,11 @@ public class Main extends PApplet{
 			
 			case 2:
 				text("info",400,450);
+				
 			break;
 			
 			case 3:
-				text("play",400,450);
+				dificultView.drawScreen();
 			break;
 			
 			case 4:
@@ -46,15 +47,13 @@ public class Main extends PApplet{
 	}
 	
 	public void mousePressed() {
-		System.out.println("click");
-		
 		switch(screen) {
 			case 1:
 				screen=menuView.switchScreen();
 			break;
 			
 			case 2:
-				screen=1;
+				screen=menuView.switchScreen();
 			break;
 			
 			case 3:
