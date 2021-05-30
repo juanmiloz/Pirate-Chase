@@ -44,7 +44,7 @@ public class PirateChase {
 
 	public void makeMapEasy() {
 		user.setEnergy(15);
-		morgan.setEnergy(13);
+		morgan.setEnergy(12);
 
 		//Vertex 0
 		Vertex<Island> initial = new Vertex<Island>(new Island(90,420,true,false,app));
@@ -85,16 +85,20 @@ public class PirateChase {
 	}
 
 
-	public void drawEasyMap() {
-		
-		
+	public void drawEasyMap() {	
 		for (int i = 0; i < islands.size(); i++) {
 			islands.get(i).getElement().drawIsland();
 		}
-		
-		
-		
-		
+
+	}
+	
+	
+	public int getUserEnergy() {
+		return user.getEnergy();
+	}
+	
+	public int getMorganEnergy() {
+		return morgan.getEnergy();
 	}
 
 	public void selectdificult(int dificult) {

@@ -17,8 +17,18 @@ public class ControllerPirateChase {
 
 	public void drawEasyMap() {
 		pc.drawEasyMap();
-		
 	}
+
+	public int getUserEnergy() {
+		return pc.getUserEnergy();
+	}
+
+	public int getMorganEnergy() {
+		return pc.getMorganEnergy();
+	}
+	
+	
+	
 	
 	
 	 

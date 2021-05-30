@@ -18,7 +18,7 @@ public class EasyMapView {
 		
 		easyMapBackground = app.loadImage("images/easyMapBackground.jpg");
 		easyMapTemplate = app.loadImage("images/easyMapTemplate.jpg");
-		font= app.loadFont("fonts/MINECRAFT.TTF");
+		font= app.createFont("fonts/MINECRAFT.TTF",25);
 		controller= new ControllerPirateChase(app);
 		controller.makeMapEasy();
 		
@@ -29,7 +29,10 @@ public class EasyMapView {
 		app.background(0);
 		app.image(easyMapBackground, 0, 0);
 		controller.drawEasyMap();
-		//
+		app.textFont(font);
+		app.fill(0);
+		app.text(controller.getUserEnergy(), 92, 51);
+		app.text(controller.getMorganEnergy(), 276, 51);
 	}
 
 }
