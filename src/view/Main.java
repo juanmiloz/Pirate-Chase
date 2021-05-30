@@ -64,6 +64,7 @@ public class Main extends PApplet{
 			break;
 			
 			case 4:
+				easyMapView.clickIsland(mouseX,mouseY);
 				
 			break;
 		}
