@@ -58,6 +58,9 @@ public class Main extends PApplet{
 			case 7:
 				text("Perdio por mk",320,300);
 			break;
+			case 8:
+				text("Gano papi",320,300);
+			break;
 		}
 		fill(255);
 		text(mouseX+", "+mouseY,mouseX,mouseY );

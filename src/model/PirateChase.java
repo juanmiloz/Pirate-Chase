@@ -269,6 +269,9 @@ public class PirateChase {
 		if(user.getEnergy()<=0) {
 			return 7;
 		}
+		if(user.getCurrentIsland()==(graph.getVertexes().size()-1)) {
+			return 8;
+		}
 		return 4;
 	}
 	
