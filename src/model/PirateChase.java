@@ -48,38 +48,38 @@ public class PirateChase {
 		morgan.setEnergy(12);
 
 		//Vertex 0
-		Vertex<Island> initial = new Vertex<Island>(new Island(90,420,true,false,app));
+		Vertex<Island> initial = new Vertex<Island>(new Island(90,420,true,false,0,app));
 		islands.add(initial);
 
 		//Vertex 1
-		islands.add(new Vertex<Island>(new Island(117,241,false,true,app)));
+		islands.add(new Vertex<Island>(new Island(117,241,false,true,1,app)));
 
 
 		//Vertex 2
-		islands.add(new Vertex<Island>(new Island(288,459,false,true,app)));
+		islands.add(new Vertex<Island>(new Island(288,459,false,true,2,app)));
 
 		//Vertex 3
-		islands.add(new Vertex<Island>(new Island(294,263,false,true,app)));
+		islands.add(new Vertex<Island>(new Island(294,263,false,true,3,app)));
 
 		//Vertex 4
-		islands.add(new Vertex<Island>(new Island(233,124,app)));
+		islands.add(new Vertex<Island>(new Island(233,124,4,app)));
 
 
 		//Vertex 5
-		islands.add(new Vertex<Island>(new Island(489,415,app)));
+		islands.add(new Vertex<Island>(new Island(489,415,5,app)));
 
 		//Vertex 6
-		islands.add(new Vertex<Island>(new Island(489,244,app)));
+		islands.add(new Vertex<Island>(new Island(489,244,6,app)));
 
 		//Vertex 7
-		islands.add(new Vertex<Island>(new Island(449,94,app)));
+		islands.add(new Vertex<Island>(new Island(449,94,7,app)));
 
 
 		//Vertex 8
-		islands.add(new Vertex<Island>(new Island(657,257,app)));
+		islands.add(new Vertex<Island>(new Island(657,257,8,app)));
 
 		//Vertex 9
-		islands.add(new Vertex<Island>(new Island(604,109,app)));
+		islands.add(new Vertex<Island>(new Island(604,109,9,app)));
 		//islands.add(new Vertex<Island>(new Island()));
 
 		//graph = new Graph<>(mapEasy,islands);
@@ -93,6 +93,20 @@ public class PirateChase {
 
 	}
 	
+	
+	public int clickOnIsland(int mouseX,int mouseY) {
+	
+		for (int i = 0; i < islands.size(); i++) {
+			if(mouseX>islands.get(i).getElement().getPosX() 
+			&& mouseX<islands.get(i).getElement().getPosX()+islands.get(i).getElement().getWidth()
+			&& mouseY>islands.get(i).getElement().getPosY()
+			&& mouseY<islands.get(i).getElement().getPosY()+islands.get(i).getElement().getHeight()) {
+				System.out.println(islands.get(i).getElement().getIslandNumber());
+			}
+			
+		}
+		return 0;
+	}
 	
 	public int getUserEnergy() {
 		return user.getEnergy();
