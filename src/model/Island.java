@@ -1,59 +1,81 @@
 package model;
 
+import processing.core.PApplet;
+import processing.core.PImage;
+
 public class Island {
 	
-	boolean rechargeEnergy;
-	boolean morganRetarder;
-	boolean moreTime; 
-	Pirate evilPirate; 
-	Pirate goodPirate;
+	private int posX, posY, width, height;
+	private PImage islandLight, islandDark;
+	private boolean occupied;
+	private boolean adyacent;
+	private PApplet app;
 	
-	public Island(boolean rechargeEnergy, boolean morganRetarder, boolean moreTime) {
-		this.rechargeEnergy = rechargeEnergy; 
-		this.morganRetarder = morganRetarder;
-		this.moreTime = moreTime;
-		this.evilPirate = null;
-		this.goodPirate = null;
+	public Island(int posX, int posY, boolean occupied, boolean adyacent,PApplet app) {
+		this.app=app;
+		islandLight= app.loadImage("images/island.png");
+		islandDark= app.loadImage("images/darkIsland.png");
+		this.posX = posX;
+		this.posY = posY;
+		width=70;
+		height=70;
+		this.adyacent=adyacent;
+		this.occupied=occupied;
 	}
+	
+	public Island(int posX, int posY,PApplet app) {
+		this.app=app;
+		islandLight= app.loadImage("images/island.png");
+		islandDark= app.loadImage("images/darkIsland.png");
+		this.posX = posX;
+		this.posY = posY;
+		width=70;
+		height=70;
+		adyacent=false;
+		occupied=false;
+	}
+	
+	public Island(int posX, int posY) {
+		this.posX = posX;
+		this.posY = posY;
+		width=70;
+		height=70;
+		adyacent=false;
+		occupied=false;
+	}
+	
+	
+	
+	
+	public void drawIsland() {
+		if(adyacent || occupied) {
+			app.image(islandLight, posX, posY,width,height);
+		
+		}else {
+			app.image(islandDark, posX, posY,width,height);
+		}
+		
+	}
+
+	public boolean isOccupied() {
+		return occupied;
+	}
+
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
+	}
+
+	public boolean isAdyacent() {
+		return adyacent;
+	}
+
+	public void setAdyacent(boolean adyacent) {
+		this.adyacent = adyacent;
+	}
+	
+	
+	
+	
 
 	
-	public boolean isRechargeEnergy() {
-		return rechargeEnergy;
-	}
-
-	public void setRechargeEnergy(boolean rechargeEnergy) {
-		this.rechargeEnergy = rechargeEnergy;
-	}
-
-	public boolean isMorganRetarder() {
-		return morganRetarder;
-	}
-
-	public void setMorganRetarder(boolean morganRetarder) {
-		this.morganRetarder = morganRetarder;
-	}
-
-	public boolean isMoreTime() {
-		return moreTime;
-	}
-
-	public void setMoreTime(boolean moreTime) {
-		this.moreTime = moreTime;
-	}
-
-	public Pirate getEvilPirate() {
-		return evilPirate;
-	}
-
-	public void setEvilPirate(Pirate evilPirate) {
-		this.evilPirate = evilPirate;
-	}
-
-	public Pirate getGoodPirate() {
-		return goodPirate;
-	}
-
-	public void setGoodPirate(Pirate goodPirate) {
-		this.goodPirate = goodPirate;
-	}
 }
