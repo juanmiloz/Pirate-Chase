@@ -19,6 +19,14 @@ public class ControllerPirateChase {
 		pc.drawEasyMap();
 	}
 
+	public void makeMapMedium() {
+		pc.generateMediumMap();
+	}
+	
+	public void drawMediumMap() {
+		pc.drawMediumMap();
+	}
+	
 	public int getUserEnergy() {
 		return pc.getUserEnergy();
 	}

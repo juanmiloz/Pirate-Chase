@@ -61,7 +61,7 @@ public class Graph<E> implements GraphInterface<E>{
 		return adjacencyMatrix[vertex1][vertex2];
 	}
 	
-	public Vertex getConection(int vertex1, int vertex2) throws ConnectioDoesNotExistException{
+	public Vertex<E> getConection(int vertex1, int vertex2) throws ConnectioDoesNotExistException{
 		Vertex<E> answer = null;
 		if(adjacencyMatrix[vertex1][vertex2]!= 0) {
 			answer = vertexes.get(vertex2);

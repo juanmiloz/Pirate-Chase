@@ -3,9 +3,9 @@ package structures.graphArrayList;
 public class Partner <E>{
 
 	private int weight;
-	private Vertex<E> vertex;
+	private VertexArray<E> vertex;
 	
-	public Partner(int weight, Vertex<E> vertex) {
+	public Partner(int weight, VertexArray<E> vertex) {
 		this.weight = weight; 
 		this.vertex = vertex;
 	}
@@ -18,11 +18,11 @@ public class Partner <E>{
 		this.weight = weight;
 	}
 
-	public Vertex<E> getVertex() {
+	public VertexArray<E> getVertex() {
 		return vertex;
 	}
 
-	public void setVertex(Vertex<E> vertex) {
+	public void setVertex(VertexArray<E> vertex) {
 		this.vertex = vertex;
 	}
 }

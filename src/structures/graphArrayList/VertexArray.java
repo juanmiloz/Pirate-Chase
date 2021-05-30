@@ -2,14 +2,14 @@ package structures.graphArrayList;
 
 import java.util.ArrayList;
 
-public class Vertex<E>{
+public class VertexArray<E>{
 
 	private E element;
 	private ArrayList<Partner<E>> vertexes;
 	private int dni;
 	private boolean visited;
 	
-	public Vertex(E element, int dni) {
+	public VertexArray(E element, int dni) {
 		this.setElement(element);
 		this.vertexes = new ArrayList<Partner<E>>();
 		visited = false;
@@ -24,23 +24,23 @@ public class Vertex<E>{
 		return visited;
 	}
 	
-	public Vertex(E element, ArrayList<Partner<E>> vertexes) {
+	public VertexArray(E element, ArrayList<Partner<E>> vertexes) {
 		this.setElement(element);
 		this.vertexes = vertexes;
 	}
 	
 	public void addVertex(int weight, E element, int dni) {
-		Vertex<E> newVertex = new Vertex<>(element, dni);
+		VertexArray<E> newVertex = new VertexArray<>(element, dni);
 		Partner<E> newPartner = new Partner<>(weight, newVertex);
 		vertexes.add(newPartner);
 	}
 	
-	public void addVertex(int weight, Vertex<E> newVertex) {
+	public void addVertex(int weight, VertexArray<E> newVertex) {
 		Partner<E> newPartner = new Partner<>(weight, newVertex);
 		vertexes.add(newPartner);
 	}
 	
-	public int getWeight(Vertex<E> toConect) {
+	public int getWeight(VertexArray<E> toConect) {
 		for(int i = 0; i < vertexes.size(); i++) {
 			if(vertexes.get(i).getVertex().equals(toConect)) {
 				return vertexes.get(i).getWeight();

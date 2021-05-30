@@ -5,7 +5,7 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
 
-public class EasyMapView {
+public class MediumMapView {
 
 	private PApplet app;
 	private PImage easyMapBackground;
@@ -13,7 +13,7 @@ public class EasyMapView {
 	private PFont font;
 	private ControllerPirateChase controller;
 	
-	public EasyMapView(PApplet app) {
+	public MediumMapView(PApplet app) {
 		this.app = app;
 		
 		easyMapBackground = app.loadImage("images/easyMapBackground.jpg");
@@ -24,13 +24,13 @@ public class EasyMapView {
 
 
 		controller= new ControllerPirateChase(app);
-		controller.makeMapEasy();
+		controller.makeMapMedium();;
 	}
 	
 	public void drawScreen() {
 		app.background(0);
-		app.image(easyMapBackground, 0, 0);
-		controller.drawEasyMap();
+		//app.image(easyMapBackground, 0, 0);
+		controller.drawMediumMap();
 		app.textFont(font);
 		app.fill(0);
 		app.text(controller.getUserEnergy(), 92, 51);

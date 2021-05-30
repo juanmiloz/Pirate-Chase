@@ -2,31 +2,31 @@ package structures.graphArrayList;
 
 import java.util.ArrayList;
 
-import model.Island;
+public class GraphArray<E> {
 
-public class Graph<E> {
-
-	Vertex<E> root;
+	VertexArray<E> root;
 	private int islandsCreated;
 	private int[][] adyacencyMatrix;
+	private ArrayList<VertexArray<E>> vertexList = new ArrayList<VertexArray<E>>();
 	
-	public Graph() {
+	public GraphArray() {
 		this.root = null;
 		islandsCreated = 0;
 		adyacencyMatrix = new int[0][0];
 	}
 
-	public Vertex<E> getRoot() {
+	public VertexArray<E> getRoot() {
 		return root;
 	}
 
-	public void setRoot(Vertex<E> root) {
+	public void setRoot(VertexArray<E> root) {
 		this.root = root;
 	}
 	
-	public Vertex<E> createVertex(E island) {
+	public VertexArray<E> createVertex(E island) {
 		islandsCreated++;
-		Vertex<E> vertex = new Vertex<>(island, islandsCreated);
+		VertexArray<E> vertex = new VertexArray<>(island, islandsCreated);
+		getVertexList().add(vertex);
 		int[][] newMatrix = new int[islandsCreated][islandsCreated];
 		for(int c = 0; c < islandsCreated; c++) {
 			for(int v = 0; v < islandsCreated; v++) {
@@ -43,7 +43,7 @@ public class Graph<E> {
 		return vertex;
 	}
 	
-	public void addVertex(Vertex<E> vertex, ArrayList<Vertex<E>> connections, int[] weigths) {
+	public void addVertex(VertexArray<E> vertex, ArrayList<VertexArray<E>> connections, int[] weigths) {
 		if(root == null) {
 			root = vertex;
 			adyacencyMatrix = new int[1][1];
@@ -53,7 +53,7 @@ public class Graph<E> {
 		}
 	}
 	
-	private int addVertexHelper(Vertex<E> current, ArrayList<Vertex<E>> connections, int[] weigths, Vertex<E> newVertex) {
+	private int addVertexHelper(VertexArray<E> current, ArrayList<VertexArray<E>> connections, int[] weigths, VertexArray<E> newVertex) {
 		ArrayList<Partner<E>> connections_vertex = current.getVertexes();
 		if(connections.size() == 0 || current.isVisited()) {
 			return 0;
@@ -123,6 +123,14 @@ public class Graph<E> {
 
 	public void setIslandsCreated(int islandsCreated) {
 		this.islandsCreated = islandsCreated;
+	}
+
+	public ArrayList<VertexArray<E>> getVertexList() {
+		return vertexList;
+	}
+
+	public void setVertexList(ArrayList<VertexArray<E>> vertexList) {
+		this.vertexList = vertexList;
 	}
 	
 }
