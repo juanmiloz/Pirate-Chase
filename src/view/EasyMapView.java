@@ -18,11 +18,13 @@ public class EasyMapView {
 		
 		easyMapBackground = app.loadImage("images/easyMapBackground.jpg");
 		easyMapTemplate = app.loadImage("images/easyMapTemplate.jpg");
+<<<<<<< HEAD
 		font= app.createFont("fonts/MINECRAFT.TTF",25);
+=======
+		font= app.createFont("fonts/MINECRAFT.TTF",16);
+>>>>>>> f68cd12cc7763253b04daec0955389b516758bc4
 		controller= new ControllerPirateChase(app);
 		controller.makeMapEasy();
-		
-		
 	}
 	
 	public void drawScreen() {
