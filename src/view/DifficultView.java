@@ -3,12 +3,12 @@ package view;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class DificultView {
+public class DifficultView {
 	
 	private PApplet app;
 	private PImage selectDifficulty, selectDifficultyNoob, selectDifficultyNormal, selectDifficultyPro;
 
-	public DificultView(PApplet app) {
+	public DifficultView(PApplet app) {
 		this.app = app;
 		
 		selectDifficulty = app.loadImage("images/selectDifficulty.jpg");

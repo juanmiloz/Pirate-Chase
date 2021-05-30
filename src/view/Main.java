@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class Main extends PApplet{
 
 	private MenuView menuView;
-	private DificultView dificultView;
+	private DifficultView dificultView;
 	private int screen;
 	
 	public static void main(String args[]) {
@@ -15,7 +15,7 @@ public class Main extends PApplet{
 	public void setup() {
 		screen = 1;
 		menuView = new MenuView(this);
-		dificultView = new DificultView(this); 
+		dificultView = new DifficultView(this); 
 	}
 	
 	public void settings() {
