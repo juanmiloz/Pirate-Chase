@@ -38,7 +38,7 @@ public class DifficultView {
 		}else if(app.mouseX>290 && app.mouseX<520 && app.mouseY>345 && app.mouseY<422){
 			screen = 5;
 		}else if(app.mouseX>290 && app.mouseX<520 && app.mouseY>450 && app.mouseY<525){
-			screen = 1;
+			screen = 6;
 		}
 		
 		return screen;

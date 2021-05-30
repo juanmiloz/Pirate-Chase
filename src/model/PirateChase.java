@@ -32,6 +32,26 @@ public class PirateChase {
 			/*8*/{0, 0, 0, 0, 0, 5, 5, 0, 0, 3},
 			/*9*/{0, 0, 0, 0, 0, 0, 4, 6, 3, 0}
 	};
+	
+	private int[][] mapHard = {
+			//     0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+			/*0 */{0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			/*1 */{3, 0, 0, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			/*2 */{3, 0, 0, 0, 5, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+			/*3 */{0, 8, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0},
+			/*4 */{0, 7, 5, 0, 0, 0, 0, 8, 3, 0, 0, 0, 0, 0, 0, 0},
+			/*5 */{0, 0, 8, 5, 0, 0, 0, 0, 5, 9, 0, 0, 0, 0, 0, 0},
+			/*6 */{0, 0, 0, 6, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0},
+			/*7 */{0, 0, 0, 6, 8, 0, 2, 0, 0, 0, 0, 0, 0, 7, 0, 0},
+			/*8 */{0, 0, 0, 0, 3, 5, 0, 0, 0, 6, 0, 6, 0, 0, 0, 0},
+			/*9 */{0, 0, 0, 0, 0, 9, 0, 0, 6, 0, 0, 0, 7, 0, 0, 0},
+			/*10*/{0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 9, 0, 0},
+			/*11*/{0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 7, 10, 0},
+			/*12*/{0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 2, 0},
+			/*13*/{0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 9, 7, 0, 0, 0, 9},
+			/*14*/{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 2, 0, 0, 6},
+			/*15*/{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 6, 0}
+	};
 	private ArrayList<Vertex<Island>> islands = new ArrayList<>();
 	private ArrayList<VertexArray<Island>> islandsArray = new ArrayList<>();
 
@@ -47,6 +67,8 @@ public class PirateChase {
 
 	public void generateMediumMap() {
 		islandsArray.clear();
+		user.setEnergy(15);
+		morgan.setEnergy(12);
 		VertexArray<Island> vt1 = graphArray.createVertex(new Island(0,0,true,false,0,app));
 		graphArray.addVertex(vt1, null, null);
 		
@@ -122,6 +144,29 @@ public class PirateChase {
 		islandsArray.addAll(graphArray.getVertexList());
 	}
 
+	public void makeMapHard() {
+		islands.clear();
+		user.setEnergy(15);
+		morgan.setEnergy(12);
+		
+		islands.add(new Vertex<Island>(new Island(0,0,0,app)));
+		islands.add(new Vertex<Island>(new Island(20,0,1,app)));
+		islands.add(new Vertex<Island>(new Island(40,0,2,app)));
+		islands.add(new Vertex<Island>(new Island(60,0,3,app)));
+		islands.add(new Vertex<Island>(new Island(80,0,4,app)));
+		islands.add(new Vertex<Island>(new Island(100,0,5,app)));
+		islands.add(new Vertex<Island>(new Island(120,0,6,app)));
+		islands.add(new Vertex<Island>(new Island(140,0,7,app)));
+		islands.add(new Vertex<Island>(new Island(160,0,8,app)));
+		islands.add(new Vertex<Island>(new Island(180,0,9,app)));
+		islands.add(new Vertex<Island>(new Island(200,0,10,app)));
+		islands.add(new Vertex<Island>(new Island(220,0,11,app)));
+		islands.add(new Vertex<Island>(new Island(240,0,12,app)));
+		islands.add(new Vertex<Island>(new Island(260,0,13,app)));
+		islands.add(new Vertex<Island>(new Island(280,0,14,app)));
+		islands.add(new Vertex<Island>(new Island(300,0,15,app)));
+		setGraph(new Graph<>(mapHard,islands));
+	}
 
 	public void makeMapEasy() {
 		user.setEnergy(15);
@@ -171,6 +216,12 @@ public class PirateChase {
 
 
 	public void drawEasyMap() {	
+		for (int i = 0; i < islands.size(); i++) {
+			islands.get(i).getElement().drawIsland();
+		}
+	}
+	
+	public void drawHardMap() {	
 		for (int i = 0; i < islands.size(); i++) {
 			islands.get(i).getElement().drawIsland();
 		}

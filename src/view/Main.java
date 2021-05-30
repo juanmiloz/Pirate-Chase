@@ -9,6 +9,7 @@ public class Main extends PApplet{
 	private InfoView infoView;
 	private EasyMapView easyMapView;
 	private MediumMapView mediumMapView;
+	private HardMapView hardMapView;
 	private int screen;
 	
 	public static void main(String args[]) {
@@ -49,6 +50,9 @@ public class Main extends PApplet{
 			
 			case 5:
 				mediumMapView.drawScreen();
+			break;
+			case 6:
+				hardMapView.drawScreen();
 			break;
 		}
 		fill(255);

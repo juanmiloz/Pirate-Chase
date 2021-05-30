@@ -19,6 +19,14 @@ public class ControllerPirateChase {
 		pc.drawEasyMap();
 	}
 
+	public void makeMapHard() {
+		pc.makeMapHard();
+	}
+	
+	public void drawHardMap() {
+		pc.drawHardMap();
+	}
+	
 	public void makeMapMedium() {
 		pc.generateMediumMap();
 	}
