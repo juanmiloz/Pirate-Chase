@@ -80,9 +80,8 @@ public class PirateChase {
 
 		//Vertex 9
 		islands.add(new Vertex<Island>(new Island(604,109,app)));
-		//islands.add(new Vertex<Island>(new Island()));
 
-		//graph = new Graph<>(mapEasy,islands);
+		graph = new Graph<>(mapEasy,islands);
 	}
 
 
