@@ -101,4 +101,20 @@ public class Graph<E> implements GraphInterface<E>{
 		
 		return answer;
 	}
+	
+	public int[][] getAdjacencyMatrix(){
+		return adjacencyMatrix;
+	}
+
+	public ArrayList<Vertex<E>> getVertexes() {
+		return vertexes;
+	}
+
+	public void setVertexes(ArrayList<Vertex<E>> vertexes) {
+		this.vertexes = vertexes;
+	}
+
+	public void setAdjacencyMatrix(int[][] adjacencyMatrix) {
+		this.adjacencyMatrix = adjacencyMatrix;
+	}
 }

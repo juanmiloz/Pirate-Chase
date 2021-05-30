@@ -23,6 +23,7 @@ public class Main extends PApplet{
 		infoView = new InfoView(this);
 		easyMapView = new EasyMapView(this);
 		mediumMapView = new MediumMapView(this);
+		hardMapView = new HardMapView(this);
 	}
 	
 	public void settings() {
@@ -54,6 +55,9 @@ public class Main extends PApplet{
 			case 6:
 				hardMapView.drawScreen();
 			break;
+			case 7:
+				text("Perdio por mk",320,300);
+			break;
 		}
 		fill(255);
 		text(mouseX+", "+mouseY,mouseX,mouseY );
@@ -74,7 +78,10 @@ public class Main extends PApplet{
 			break;
 			
 			case 4:
-				easyMapView.clickIsland(mouseX,mouseY);
+				screen=easyMapView.clickIsland(mouseX,mouseY);
+			break;
+			
+			case 5:
 				
 			break;
 		}

@@ -217,7 +217,8 @@ public class PirateChase {
 
 	public void drawEasyMap() {	
 		for (int i = 0; i < islands.size(); i++) {
-			islands.get(i).getElement().drawIsland();
+			graph.getVertexes().get(i).getElement().drawIsland();
+			//islands.get(i).getElement().drawIsland();
 		}
 	}
 	
@@ -242,10 +243,33 @@ public class PirateChase {
 			&& mouseY>islands.get(i).getElement().getPosY()
 			&& mouseY<islands.get(i).getElement().getPosY()+islands.get(i).getElement().getHeight()) {
 				System.out.println(islands.get(i).getElement().getIslandNumber());
+				int numIsland = graph.getVertexes().get(i).getElement().getIslandNumber();	
+				
+				if(graph.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland] != 0) {
+					graph.getVertexes().get(numIsland).getElement().setOccupied(true);
+					for(int j = 0; j < graph.getVertexes().size();j++) {
+						if(graph.getAdjacencyMatrix()[user.getCurrentIsland()][j] != 0 && graph.getAdjacencyMatrix()[j][numIsland] == 0) {
+							graph.getVertexes().get(j).getElement().setAdyacent(false);
+						}
+					}
+					for(int j = 0; j < graph.getVertexes().size();j++) {
+						if(graph.getAdjacencyMatrix()[numIsland][j] != 0) {
+							graph.getVertexes().get(j).getElement().setAdyacent(true);
+						}
+					}
+					graph.getVertexes().get(user.getCurrentIsland()).getElement().setOccupied(false);
+					graph.getVertexes().get(user.getCurrentIsland()).getElement().setAdyacent(true);
+					user.setEnergy(user.getEnergy()-graph.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland]);
+					user.setCurrentIsland(numIsland);
+				}else {
+					System.err.println("No es adyacente	");
+				}
 			}
-			
 		}
-		return 0;
+		if(user.getEnergy()<=0) {
+			return 7;
+		}
+		return 4;
 	}
 	
 	public int getUserEnergy() {
@@ -260,15 +284,15 @@ public class PirateChase {
 		switch (dificult) {
 		case 1:
 			makeMapEasy();
-			break;
+		break;
 
 		case 2:
 
-			break; 
+		break; 
 
 		case 3:
 
-			break;
+		break;
 		}
 	}
 
