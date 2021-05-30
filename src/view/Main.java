@@ -5,7 +5,9 @@ import processing.core.PApplet;
 public class Main extends PApplet{
 
 	private MenuView menuView;
-	private DifficultView dificultView;
+	private DifficultView difficultView;
+	private InfoView infoView;
+	private EasyMapBackground easyMapBackground;
 	private int screen;
 	
 	public static void main(String args[]) {
@@ -15,7 +17,9 @@ public class Main extends PApplet{
 	public void setup() {
 		screen = 1;
 		menuView = new MenuView(this);
-		dificultView = new DifficultView(this); 
+		difficultView = new DifficultView(this); 
+		infoView = new InfoView(this);
+		easyMapBackground = new EasyMapBackground(this);
 	}
 	
 	public void settings() {
@@ -30,16 +34,15 @@ public class Main extends PApplet{
 			break;
 			
 			case 2:
-				text("info",400,450);
-				
+				infoView.drawScreen();
 			break;
 			
 			case 3:
-				dificultView.drawScreen();
+				difficultView.drawScreen();
 			break;
 			
 			case 4:
-				
+				easyMapBackground.drawScreen();
 			break;
 		}
 		fill(255);
@@ -53,11 +56,11 @@ public class Main extends PApplet{
 			break;
 			
 			case 2:
-				screen=menuView.switchScreen();
+				screen=infoView.switchScreen();
 			break;
 			
 			case 3:
-				screen=1;
+				screen=difficultView.switchScreen();
 			break;
 			
 			case 4:

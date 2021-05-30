@@ -32,9 +32,9 @@ public class DifficultView {
 	}
 	
 	public int switchScreen() {
-		int screen=1;
+		int screen = 3;
 		if(app.mouseX>290 && app.mouseX<520 && app.mouseY>244 && app.mouseY<318) {
-			screen = 1;
+			screen = 4;
 		}else if(app.mouseX>290 && app.mouseX<520 && app.mouseY>345 && app.mouseY<422){
 			screen = 1;
 		}else if(app.mouseX>290 && app.mouseX<520 && app.mouseY>450 && app.mouseY<525){
