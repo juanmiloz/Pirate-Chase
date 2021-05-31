@@ -7,7 +7,7 @@ public class Pirate {
 	private int currentIsland;
 	
 	public Pirate() {
-		this.currentIsland = 0; 
+		 
 	}
 	
 	

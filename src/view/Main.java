@@ -11,7 +11,10 @@ public class Main extends PApplet{
 	private EasyMapView easyMapView;
 	private MediumMapView mediumMapView;
 	private HardMapView hardMapView;
+	private EndGameView endGameView;  
 	private int screen;
+	private String message;
+	private int minEnergy;
 	
 	public static void main(String args[]) {
 		PApplet.main(Main.class.getName());
@@ -28,6 +31,7 @@ public class Main extends PApplet{
 		easyMapView = new EasyMapView(this);
 		mediumMapView = new MediumMapView(this);
 		hardMapView = new HardMapView(this);
+		endGameView = new EndGameView(this);
 	}
 	
 	public void settings() {
@@ -60,11 +64,7 @@ public class Main extends PApplet{
 				hardMapView.drawScreen();
 			break;
 			case 7:
-				
-				text("Perdio por mk",320,300);
-			break;
-			case 8:
-				text("Gano papi",320,300);
+				endGameView.drawScreen(message, minEnergy);
 			break;
 		}
 		fill(255);
@@ -86,11 +86,26 @@ public class Main extends PApplet{
 			break;
 			
 			case 4:
-				screen=easyMapView.clickIsland(mouseX,mouseY);
+				int[] output =easyMapView.clickIsland(mouseX,mouseY);
+				if(output[0]==4) {
+					screen = 4;
+				}else if(output[0]==7 && output[1]==0) {
+					screen = 7;
+					message = "You Lose!";
+					minEnergy = output[2];
+				}else if(output[0]==7 && output[1]==1) {
+					screen = 7;
+					message = "You Win!";
+					minEnergy = output[2];
+				}
 			break;
 			
 			case 5:
 				
+			break;
+			
+			case 7:
+				screen=endGameView.switchScreen();
 			break;
 		}
 	}

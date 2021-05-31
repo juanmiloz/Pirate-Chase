@@ -10,7 +10,6 @@ import structures.graphArrayList.VertexArray;
 
 public class PirateChase {
 
-
 	private Graph<Island> graph;
 	private GraphArray<Island> graphArray;
 	private Pirate user;
@@ -169,8 +168,11 @@ public class PirateChase {
 	}
 
 	public void makeMapEasy() {
+		islands.clear();
 		user.setEnergy(15);
+		user.setCurrentIsland(0);
 		morgan.setEnergy(12);
+		morgan.setCurrentIsland(0);
 
 		//Vertex 0
 		Vertex<Island> initial = new Vertex<Island>(new Island(90,420,true,false,0,app));
@@ -235,7 +237,7 @@ public class PirateChase {
 	}
 	
 	
-	public int clickOnIsland(int mouseX,int mouseY) {
+	public int[] clickOnIsland(int mouseX,int mouseY) {
 	
 		for (int i = 0; i < islands.size(); i++) {
 			if(mouseX>islands.get(i).getElement().getPosX() 
@@ -251,12 +253,14 @@ public class PirateChase {
 						if(graph.getAdjacencyMatrix()[user.getCurrentIsland()][j] != 0 && graph.getAdjacencyMatrix()[j][numIsland] == 0) {
 							graph.getVertexes().get(j).getElement().setAdyacent(false);
 						}
-					}
-					for(int j = 0; j < graph.getVertexes().size();j++) {
 						if(graph.getAdjacencyMatrix()[numIsland][j] != 0) {
 							graph.getVertexes().get(j).getElement().setAdyacent(true);
 						}
 					}
+					/*
+					for(int j = 0; j < graph.getVertexes().size();j++) {
+						
+					}*/
 					graph.getVertexes().get(user.getCurrentIsland()).getElement().setOccupied(false);
 					graph.getVertexes().get(user.getCurrentIsland()).getElement().setAdyacent(true);
 					user.setEnergy(user.getEnergy()-graph.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland]);
@@ -266,13 +270,25 @@ public class PirateChase {
 				}
 			}
 		}
+		
+		int minEnergy = 0;
+		
 		if(user.getEnergy()<=0) {
-			return 7;
+			minEnergy = graph.floydWarshall()[0][graph.getAdjacencyMatrix().length-1];
+			
+			int[] output = {7,0/*perdio*/,minEnergy};
+			makeMapEasy();
+			return output;
 		}
 		if(user.getCurrentIsland()==(graph.getVertexes().size()-1)) {
-			return 8;
+			minEnergy = graph.floydWarshall()[0][graph.getAdjacencyMatrix().length-1];
+			
+			int[] output = {7,1/*Gano*/,minEnergy};
+			makeMapEasy();
+			return output;
 		}
-		return 4;
+		int[] output = {4};
+		return output;
 	}
 	
 	public int getUserEnergy() {
@@ -318,5 +334,4 @@ public class PirateChase {
 	public void setIslandsArray(ArrayList<VertexArray<Island>> islandsArray) {
 		this.islandsArray = islandsArray;
 	}
-
 }

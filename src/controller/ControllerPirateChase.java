@@ -43,10 +43,9 @@ public class ControllerPirateChase {
 		return pc.getMorganEnergy();
 	}
 
-	public int clickIsland(int mouseX, int mouseY) {
+	public int[] clickIsland(int mouseX, int mouseY) {
 		return pc.clickOnIsland(mouseX, mouseY);
 	}
-	
 	
 	
 	

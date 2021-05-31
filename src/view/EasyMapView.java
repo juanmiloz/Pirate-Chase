@@ -37,7 +37,7 @@ public class EasyMapView {
 		app.text(controller.getMorganEnergy(), 276, 51);
 	}
 
-	public int clickIsland(int mouseX, int mouseY) {
+	public int[] clickIsland(int mouseX, int mouseY) {
 		return controller.clickIsland(mouseX,mouseY);
 	}
 
