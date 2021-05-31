@@ -1,6 +1,7 @@
 package view;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Main extends PApplet{
 
@@ -17,6 +18,9 @@ public class Main extends PApplet{
 	}
 	
 	public void setup() {
+		surface.setTitle("Pirate Chase");
+		PImage icon= loadImage("images/icon.png");
+		surface.setIcon(icon);
 		screen = 1;
 		menuView = new MenuView(this);
 		difficultView = new DifficultView(this); 
@@ -56,6 +60,7 @@ public class Main extends PApplet{
 				hardMapView.drawScreen();
 			break;
 			case 7:
+				
 				text("Perdio por mk",320,300);
 			break;
 			case 8:
