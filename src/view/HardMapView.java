@@ -38,7 +38,6 @@ public class HardMapView {
 	}
 
 	public int[] clickIsland(int mouseX, int mouseY) {
-		
 		return controller.clickIsland(mouseX,mouseY);
 	}
 

@@ -15,6 +15,7 @@ public class PirateChase {
 	private Pirate user;
 	private Pirate morgan;
 	private PApplet app;
+	
 
 
 	//Map number 1 (Easy)
@@ -55,12 +56,21 @@ public class PirateChase {
 	private ArrayList<VertexArray<Island>> islandsArray = new ArrayList<>();
 
 
-	public PirateChase(PApplet app) {
+	private static PirateChase singleInstance;
+	
+	private PirateChase(PApplet app) {
 		this.app=app;
 		setGraph(null);
-		user = new Pirate();
-		morgan = new Pirate();
+		user = new Pirate(0,0,true,app);
+		morgan = new Pirate(0,0,false,app);
 		graphArray = new GraphArray<Island>();
+	}
+	
+	public static PirateChase getInstance(PApplet app) {
+		if(singleInstance == null) {
+			singleInstance = new PirateChase(app);
+		}
+		return singleInstance;
 	}
 
 
@@ -145,9 +155,9 @@ public class PirateChase {
 
 	public void makeMapHard() {
 		islands.clear();
-		user.setEnergy(15);
+		user.setEnergy(32);
 		user.setCurrentIsland(0);
-		morgan.setEnergy(12);
+		morgan.setEnergy(32);
 		morgan.setCurrentIsland(0);
 
 		//Vertex 0
@@ -183,9 +193,16 @@ public class PirateChase {
 		//Vertex 15
 		islands.add(new Vertex<Island>(new Island(598,95,15,app)));
 		setGraph(new Graph<>(mapHard,islands));
+		
+		int numIsland = user.getCurrentIsland();
+		int x = graph.getVertexes().get(numIsland).getElement().getPosX();
+		int y = graph.getVertexes().get(numIsland).getElement().getPosY();
+		user.movePirate(x-40, y+20);
+		morgan.movePirate(x+45, y+20);
 	}
 
 	public void makeMapEasy() {
+		System.out.println("entra");
 		islands.clear();
 		user.setEnergy(15);
 		user.setCurrentIsland(0);
@@ -232,6 +249,12 @@ public class PirateChase {
 
 
 		setGraph(new Graph<>(mapEasy,islands));
+		
+		int numIsland = user.getCurrentIsland();
+		int x = graph.getVertexes().get(numIsland).getElement().getPosX();
+		int y = graph.getVertexes().get(numIsland).getElement().getPosY();
+		user.movePirate(x-40, y+20);
+		morgan.movePirate(x+45, y+20);
 	}
 
 
@@ -240,23 +263,28 @@ public class PirateChase {
 			graph.getVertexes().get(i).getElement().drawIsland();
 			//islands.get(i).getElement().drawIsland();
 		}
+		user.drawPirate();
+		morgan.drawPirate();
 	}
 	
 	public void drawHardMap() {	
 		for (int i = 0; i < islands.size(); i++) {
 			islands.get(i).getElement().drawIsland();
 		}
+		user.drawPirate();
+		morgan.drawPirate();
 	}
 	
 	public void drawMediumMap() {
 		for (int i = 0; i < islandsArray.size(); i++) {
 			islandsArray.get(i).getElement().drawIsland();
 		}
+		user.drawPirate();
+		morgan.drawPirate();
 	}
 	
 	
 	public int[] clickOnIsland(int mouseX,int mouseY) {
-	
 		for (int i = 0; i < islands.size(); i++) {
 			if(mouseX>islands.get(i).getElement().getPosX() 
 			&& mouseX<islands.get(i).getElement().getPosX()+islands.get(i).getElement().getWidth()
@@ -275,10 +303,6 @@ public class PirateChase {
 							graph.getVertexes().get(j).getElement().setAdyacent(true);
 						}
 					}
-					/*
-					for(int j = 0; j < graph.getVertexes().size();j++) {
-						
-					}*/
 					graph.getVertexes().get(user.getCurrentIsland()).getElement().setOccupied(false);
 					graph.getVertexes().get(user.getCurrentIsland()).getElement().setAdyacent(true);
 					user.setEnergy(user.getEnergy()-graph.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland]);
@@ -289,24 +313,30 @@ public class PirateChase {
 			}
 		}
 		
+		recalculatePosUser(user.getCurrentIsland());
+		
 		int minEnergy = 0;
 		
-		if(user.getEnergy()<=0) {
+		if(user.getEnergy()<0) {
 			minEnergy = graph.floydWarshall()[0][graph.getAdjacencyMatrix().length-1];
-			
+			user.setCurrentIsland(0);
 			int[] output = {7,0/*perdio*/,minEnergy};
-			makeMapEasy();
 			return output;
 		}
 		if(user.getCurrentIsland()==(graph.getVertexes().size()-1)) {
 			minEnergy = graph.floydWarshall()[0][graph.getAdjacencyMatrix().length-1];
-			
+			user.setCurrentIsland(0);
 			int[] output = {7,1/*Gano*/,minEnergy};
-			makeMapEasy();
 			return output;
 		}
-		int[] output = {4};
+		int[] output = {0};
 		return output;
+	}
+	
+	public void recalculatePosUser(int newIsland) {
+		int x = graph.getVertexes().get(newIsland).getElement().getPosX();
+		int y = graph.getVertexes().get(newIsland).getElement().getPosY();
+		user.movePirate(x-40, y+20);
 	}
 	
 	public int getUserEnergy() {

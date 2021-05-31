@@ -91,9 +91,7 @@ public class Main extends PApplet{
 			
 			case 4:
 				int[] output =easyMapView.clickIsland(mouseX,mouseY);
-				if(output[0]==4) {
-					screen = 4;
-				}else if(output[0]==7 && output[1]==0) {
+				if(output[0]==7 && output[1]==0) {
 					screen = 7;
 					message = "You Lose!";
 					minEnergy = output[2];
@@ -105,10 +103,12 @@ public class Main extends PApplet{
 			break;
 			
 			case 5:
+				
+			break;
+			
+			case 6:
 				int[] outputhard =hardMapView.clickIsland(mouseX,mouseY);
-				if(outputhard[0]==4) {
-					screen = 4;
-				}else if(outputhard[0]==7 && outputhard[1]==0) {
+				if(outputhard[0]==7 && outputhard[1]==0) {
 					screen = 7;
 					message = "You Lose!";
 					minEnergy = outputhard[2];

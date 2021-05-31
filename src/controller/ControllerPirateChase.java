@@ -8,7 +8,7 @@ public class ControllerPirateChase {
 	 private PirateChase pc;
 
 	public ControllerPirateChase(PApplet app) {
-		pc= new PirateChase(app);
+		pc= PirateChase.getInstance(app);
 	}
 
 	public void makeMapEasy() {
