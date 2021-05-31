@@ -66,8 +66,12 @@ public class Main extends PApplet{
 			case 7:
 				endGameView.drawScreen(message, minEnergy);
 			break;
+			case 8:
+				exit();
+				break;
 		}
 		fill(255);
+		textSize(12);
 		text(mouseX+", "+mouseY,mouseX,mouseY );
 	}
 	

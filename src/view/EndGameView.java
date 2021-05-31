@@ -46,7 +46,7 @@ public class EndGameView {
 		if(app.mouseX>193 && app.mouseX<348 && app.mouseY>461 && app.mouseY<518) {
 			return 1; 
 		}else if(app.mouseX>395 && app.mouseX<570 && app.mouseY>461 && app.mouseY<518){
-			return 3;
+			return 8;
 		}
 		return 7;
 	}
