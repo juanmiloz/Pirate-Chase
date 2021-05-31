@@ -8,28 +8,28 @@ import processing.core.PImage;
 public class HardMapView {
 
 	private PApplet app;
-	private PImage easyMapBackground;
-	private PImage easyMapTemplate;
+	private PImage hardMapBackground;
+	private PImage hardMapTemplate;
 	private PFont font;
 	private ControllerPirateChase controller;
 	
 	public HardMapView(PApplet app) {
 		this.app = app;
 		
-		easyMapBackground = app.loadImage("images/easyMapBackground.jpg");
-		setEasyMapTemplate(app.loadImage("images/easyMapTemplate.jpg"));
+		hardMapBackground = app.loadImage("images/hardMap.jpg");
+		hardMapTemplate= app.loadImage("images/hardMapTemplate.jpg");
 
 		font= app.createFont("fonts/MINECRAFT.TTF",25);
 
 
 
 		controller= new ControllerPirateChase(app);
-		controller.makeMapEasy();
+		controller.makeMapHard();
 	}
 	
 	public void drawScreen() {
 		app.background(0);
-		//app.image(easyMapBackground, 0, 0);
+		app.image(hardMapBackground, 0, 0);
 		controller.drawHardMap();
 		app.textFont(font);
 		app.fill(0);
@@ -42,12 +42,6 @@ public class HardMapView {
 		
 	}
 
-	public PImage getEasyMapTemplate() {
-		return easyMapTemplate;
-	}
 
-	public void setEasyMapTemplate(PImage easyMapTemplate) {
-		this.easyMapTemplate = easyMapTemplate;
-	}
 
 }
