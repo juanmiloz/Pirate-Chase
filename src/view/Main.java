@@ -105,7 +105,18 @@ public class Main extends PApplet{
 			break;
 			
 			case 5:
-				
+				int[] outputhard =hardMapView.clickIsland(mouseX,mouseY);
+				if(outputhard[0]==4) {
+					screen = 4;
+				}else if(outputhard[0]==7 && outputhard[1]==0) {
+					screen = 7;
+					message = "You Lose!";
+					minEnergy = outputhard[2];
+				}else if(outputhard[0]==7 && outputhard[1]==1) {
+					screen = 7;
+					message = "You Win!";
+					minEnergy = outputhard[2];
+				}
 			break;
 			
 			case 7:

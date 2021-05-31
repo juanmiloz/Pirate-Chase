@@ -146,24 +146,42 @@ public class PirateChase {
 	public void makeMapHard() {
 		islands.clear();
 		user.setEnergy(15);
+		user.setCurrentIsland(0);
 		morgan.setEnergy(12);
-		
-		islands.add(new Vertex<Island>(new Island(0,0,0,app)));
-		islands.add(new Vertex<Island>(new Island(20,0,1,app)));
-		islands.add(new Vertex<Island>(new Island(40,0,2,app)));
-		islands.add(new Vertex<Island>(new Island(60,0,3,app)));
-		islands.add(new Vertex<Island>(new Island(80,0,4,app)));
-		islands.add(new Vertex<Island>(new Island(100,0,5,app)));
-		islands.add(new Vertex<Island>(new Island(120,0,6,app)));
-		islands.add(new Vertex<Island>(new Island(140,0,7,app)));
-		islands.add(new Vertex<Island>(new Island(160,0,8,app)));
-		islands.add(new Vertex<Island>(new Island(180,0,9,app)));
-		islands.add(new Vertex<Island>(new Island(200,0,10,app)));
-		islands.add(new Vertex<Island>(new Island(220,0,11,app)));
-		islands.add(new Vertex<Island>(new Island(240,0,12,app)));
-		islands.add(new Vertex<Island>(new Island(260,0,13,app)));
-		islands.add(new Vertex<Island>(new Island(280,0,14,app)));
-		islands.add(new Vertex<Island>(new Island(300,0,15,app)));
+		morgan.setCurrentIsland(0);
+
+		//Vertex 0
+		islands.add(new Vertex<Island>(new Island(54,483,true,false,0, app)));
+		//Vertex 1
+		islands.add(new Vertex<Island>(new Island(83,334,false,true,1,app)));
+		//Vertex 2
+		islands.add(new Vertex<Island>(new Island(218,472,false,true,2,app)));
+		//Vertex 3
+		islands.add(new Vertex<Island>(new Island(136,216,3,app)));
+		//Vertex 4
+		islands.add(new Vertex<Island>(new Island(246,339,4,app)));
+		//Vertex 5
+		islands.add(new Vertex<Island>(new Island(379,470,5,app)));
+		//Vertex 6
+		islands.add(new Vertex<Island>(new Island(243,120,6,app)));
+		//Vertex 7
+		islands.add(new Vertex<Island>(new Island(331,223,7,app)));
+		//Vertex 8
+		islands.add(new Vertex<Island>(new Island(423,326,8,app)));
+		//Vertex 9
+		islands.add(new Vertex<Island>(new Island(556,464,9,app)));
+		//Vertex 10
+		islands.add(new Vertex<Island>(new Island(385,97,10,app)));
+		//Vertex 11
+		islands.add(new Vertex<Island>(new Island(516,240,11,app)));
+		//Vertex 12
+		islands.add(new Vertex<Island>(new Island(621,340,12,app)));
+		//Vertex 13
+		islands.add(new Vertex<Island>(new Island(471,148,13,app)));
+		//Vertex 14
+		islands.add(new Vertex<Island>(new Island(640,192,14,app)));
+		//Vertex 15
+		islands.add(new Vertex<Island>(new Island(598,95,15,app)));
 		setGraph(new Graph<>(mapHard,islands));
 	}
 
