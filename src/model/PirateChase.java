@@ -189,6 +189,7 @@ public class PirateChase {
 		islands.add(new Vertex<Island>(new Island(379,470,5,app)));
 		//Vertex 6
 		islands.add(new Vertex<Island>(new Island(243,120,6,app)));
+		islands.get(6).getElement().setEnergy(true);
 		//Vertex 7
 		islands.add(new Vertex<Island>(new Island(331,223,7,app)));
 		//Vertex 8
@@ -217,7 +218,6 @@ public class PirateChase {
 	}
 
 	public void makeMapEasy() {
-		System.out.println("entra");
 		islands.clear();
 		user.setEnergy(15);
 		user.setCurrentIsland(0);
@@ -240,6 +240,7 @@ public class PirateChase {
 
 		//Vertex 4
 		islands.add(new Vertex<Island>(new Island(233,124,4,app)));
+		islands.get(4).getElement().setEnergy(true);
 
 
 		//Vertex 5
@@ -322,6 +323,10 @@ public class PirateChase {
 					graph.getVertexes().get(user.getCurrentIsland()).getElement().setAdyacent(true);
 					user.setEnergy(user.getEnergy()-graph.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland]);
 					user.setCurrentIsland(numIsland);
+					
+					checkEnergy(numIsland);
+					
+					
 				}else {
 					System.err.println("No es adyacente	");
 				}
@@ -348,6 +353,16 @@ public class PirateChase {
 		return output;
 	}
 	
+	
+	
+	
+	private void checkEnergy(int numIsland) {
+		if(graph.getVertexes().get(numIsland).getElement().isEnergy()) {
+			graph.getVertexes().get(numIsland).getElement().setEnergy(false);
+			user.setEnergy(user.getEnergy()+2);
+		}	
+	}
+
 	public void recalculatePosUser(int newIsland) {
 		int x = graph.getVertexes().get(newIsland).getElement().getPosX();
 		int y = graph.getVertexes().get(newIsland).getElement().getPosY();
