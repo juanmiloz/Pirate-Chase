@@ -145,8 +145,8 @@ public class PirateChase {
 		VertexArray<Island> vt11 = graphArray.createVertex(new Island(522,196,10,app));
 		ArrayList<VertexArray<Island>> connections11 = new ArrayList<VertexArray<Island>>();
 		connections11.add(vt10);
-		connections11.add(vt5);
-		int[] weigths11 = {3, 5	};
+		connections11.add(vt6);
+		int[] weigths11 = {3, 5};
 		graphArray.addVertex(vt11, connections11, weigths11);
 		
 		VertexArray<Island> vt12 = graphArray.createVertex(new Island(575,86,11,app));
@@ -157,13 +157,17 @@ public class PirateChase {
 		graphArray.addVertex(vt12, connections12, weigths12);
 		islandsArray.addAll(graphArray.getVertexList());
 		
-		
-		/* adaptar a grafo gio
+		for(int c = 0; c < graphArray.getAdjacencyMatrix().length; c++) {
+			for(int z = 0; z < graphArray.getAdjacencyMatrix()[0].length; z++) {
+				System.out.print(graphArray.getAdjacencyMatrix()[c][z] + " ");
+			}
+			System.out.println("\n");
+		}
 		int numIsland = user.getCurrentIsland();
-		int x = graph.getVertexes().get(numIsland).getElement().getPosX();
-		int y = graph.getVertexes().get(numIsland).getElement().getPosY();
+		int x = graphArray.getVertexList().get(numIsland).getElement().getPosX();
+		int y = graphArray.getVertexList().get(numIsland).getElement().getPosY();
 		user.movePirate(x-40, y+20);
-		morgan.movePirate(x+45, y+20);*/
+		morgan.movePirate(x+45, y+20);
 		
 		
 	}
@@ -299,6 +303,59 @@ public class PirateChase {
 		morgan.drawPirate();
 	}
 	
+	public int[] clickOnIslandMedium(int mouseX, int mouseY) {
+		for (int i = 0; i < islandsArray.size(); i++) {
+			if(mouseX>islandsArray.get(i).getElement().getPosX() 
+			&& mouseX<islandsArray.get(i).getElement().getPosX()+islandsArray.get(i).getElement().getWidth()
+			&& mouseY>islandsArray.get(i).getElement().getPosY()
+			&& mouseY<islandsArray.get(i).getElement().getPosY()+islandsArray.get(i).getElement().getHeight()) {
+				System.out.println(islandsArray.get(i).getElement().getIslandNumber());
+				int numIsland = graphArray.getVertexList().get(i).getElement().getIslandNumber();	
+				
+				if(graphArray.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland] != 0) {
+					graphArray.getVertexList().get(numIsland).getElement().setOccupied(true);
+					for(int j = 0; j < graphArray.getVertexList().size();j++) {
+						if(graphArray.getAdjacencyMatrix()[user.getCurrentIsland()][j] != 0 && graphArray.getAdjacencyMatrix()[j][numIsland] == 0) {
+							graphArray.getVertexList().get(j).getElement().setAdyacent(false);
+						}
+						if(graphArray.getAdjacencyMatrix()[numIsland][j] != 0) {
+							graphArray.getVertexList().get(j).getElement().setAdyacent(true);
+						}
+					}
+					graphArray.getVertexList().get(user.getCurrentIsland()).getElement().setOccupied(false);
+					graphArray.getVertexList().get(user.getCurrentIsland()).getElement().setAdyacent(true);
+					user.setEnergy(user.getEnergy()-graphArray.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland]);
+					user.setCurrentIsland(numIsland);
+					System.out.println(graphArray.getVertexList().get(numIsland).getVertexes());
+					
+					checkEnergy(numIsland);
+					
+					
+				}else {
+					System.err.println("No es adyacente	");
+				}
+			}
+		}
+		
+		recalculatePosUserMediumMap(user.getCurrentIsland());
+		
+		int minEnergy = 0;
+		
+		if(user.getEnergy()<0) {
+			minEnergy = graphArray.floydWarshall()[0][graphArray.getAdjacencyMatrix().length-1];
+			user.setCurrentIsland(0);
+			int[] output = {7,0/*perdio*/,minEnergy};
+			return output;
+		}
+		if(user.getCurrentIsland()==(graph.getVertexes().size()-1)) {
+			minEnergy = graphArray.floydWarshall()[0][graphArray.getAdjacencyMatrix().length-1];
+			user.setCurrentIsland(0);
+			int[] output = {7,1/*Gano*/,minEnergy};
+			return output;
+		}
+		int[] output = {0};
+		return output;
+	}
 	
 	public int[] clickOnIsland(int mouseX,int mouseY) {
 		for (int i = 0; i < islands.size(); i++) {
@@ -366,6 +423,12 @@ public class PirateChase {
 	public void recalculatePosUser(int newIsland) {
 		int x = graph.getVertexes().get(newIsland).getElement().getPosX();
 		int y = graph.getVertexes().get(newIsland).getElement().getPosY();
+		user.movePirate(x-40, y+20);
+	}
+	
+	public void recalculatePosUserMediumMap(int newIsland) {
+		int x = graphArray.getVertexList().get(newIsland).getElement().getPosX();
+		int y = graphArray.getVertexList().get(newIsland).getElement().getPosY();
 		user.movePirate(x-40, y+20);
 	}
 	

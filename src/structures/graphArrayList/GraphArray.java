@@ -132,5 +132,40 @@ public class GraphArray<E> {
 	public void setVertexList(ArrayList<VertexArray<E>> vertexList) {
 		this.vertexList = vertexList;
 	}
+
+	public int[][] getAdjacencyMatrix() {
+		return adyacencyMatrix;
+	}
+
+	public int[][] floydWarshall(){
+		int[][] matrix = adyacencyMatrix.clone(); 
+		int[][] answer = new int[matrix.length][matrix.length];
+		
+		//pasar los ceros a un numero grande
+	    for(int i = 0; i < answer.length;i++) {
+			for(int j = 0; j < answer.length;j++) {
+				if(i!=j) {
+					if(matrix[i][j]==0) {
+						answer[i][j] = 500;
+					}else {
+						answer[i][j] = matrix[i][j];						
+					}
+				}
+			}
+		}
+
+	    //Aplicar warshall
+		for(int k = 0; k < answer.length;k++) {
+			for(int i = 0; i < answer.length;i++) {
+				for(int j = 0; j < answer.length;j++) {
+					if(answer[i][j] > (answer[i][k] + answer[k][j])) {
+						answer[i][j] = answer[i][k] + answer[k][j];
+					}
+				}
+			}
+		}
+		
+		return answer;
+	}
 	
 }
