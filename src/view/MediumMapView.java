@@ -31,9 +31,8 @@ public class MediumMapView {
 		app.text(controller.getMorganEnergy(), 276, 51);
 	}
 
-	public void clickIsland(int mouseX, int mouseY) {
-		controller.clickIsland(mouseX,mouseY);
-		
+	public int[] clickIsland(int mouseX, int mouseY) {
+		return controller.clickIslandMedium(mouseX, mouseY);
 	}
 
 	

@@ -47,7 +47,9 @@ public class ControllerPirateChase {
 		return pc.clickOnIsland(mouseX, mouseY);
 	}
 	
-	
+	public int[] clickIslandMedium(int mouseX, int mouseY) {
+		return pc.clickOnIslandMedium(mouseX, mouseY);
+	}
 	
 	
 	 

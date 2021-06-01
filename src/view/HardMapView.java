@@ -17,7 +17,7 @@ public class HardMapView {
 		this.app = app;
 		
 		hardMapBackground = app.loadImage("images/hardMap.jpg");
-		hardMapTemplate= app.loadImage("images/hardMapTemplate.jpg");
+		setHardMapTemplate(app.loadImage("images/hardMapTemplate.jpg"));
 
 		font= app.createFont("fonts/MINECRAFT.TTF",25);
 
@@ -38,6 +38,14 @@ public class HardMapView {
 
 	public int[] clickIsland(int mouseX, int mouseY) {
 		return controller.clickIsland(mouseX,mouseY);
+	}
+
+	public PImage getHardMapTemplate() {
+		return hardMapTemplate;
+	}
+
+	public void setHardMapTemplate(PImage hardMapTemplate) {
+		this.hardMapTemplate = hardMapTemplate;
 	}
 
 

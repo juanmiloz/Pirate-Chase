@@ -103,7 +103,16 @@ public class Main extends PApplet{
 			break;
 			
 			case 5:
-				
+				int[] outputMedium =mediumMapView.clickIsland(mouseX,mouseY);
+				if(outputMedium[0]==7 && outputMedium[1]==0) {
+					screen = 7;
+					message = "You Lose!";
+					minEnergy = outputMedium[2];
+				}else if(outputMedium[0]==7 && outputMedium[1]==1) {
+					screen = 7;
+					message = "You Win!";
+					minEnergy = outputMedium[2];
+				}
 			break;
 			
 			case 6:
