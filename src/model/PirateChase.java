@@ -82,6 +82,7 @@ public class PirateChase {
 		user.setCurrentIsland(0);
 		morgan.setEnergy(17);
 		morgan.setCurrentIsland(0);
+		graphArray = new GraphArray<Island>();
 		
 		VertexArray<Island> vt1 = graphArray.createVertex(new Island(71,473,true,false,0,app));
 		graphArray.addVertex(vt1, null, null);
@@ -159,18 +160,13 @@ public class PirateChase {
 		graphArray.addVertex(vt12, connections12, weigths12);
 		islandsArray.addAll(graphArray.getVertexList());
 		
-		for(int c = 0; c < graphArray.getAdjacencyMatrix().length; c++) {
-			for(int z = 0; z < graphArray.getAdjacencyMatrix()[0].length; z++) {
-				System.out.print(graphArray.getAdjacencyMatrix()[c][z] + " ");
-			}
-			System.out.println("\n");
-		}
 		int numIsland = user.getCurrentIsland();
 		int x = graphArray.getVertexList().get(numIsland).getElement().getPosX();
 		int y = graphArray.getVertexList().get(numIsland).getElement().getPosY();
 		user.movePirate(x-40, y+20);
 		morgan.movePirate(x+45, y+20);
-		
+		Integer[] test = graphArray.dijkstra(0);
+		setMorganMovements(test);
 		
 	}
 
@@ -334,6 +330,7 @@ public class PirateChase {
 				int numIsland = graphArray.getVertexList().get(i).getElement().getIslandNumber();	
 				
 				if(graphArray.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland] != 0) {
+					
 					graphArray.getVertexList().get(numIsland).getElement().setOccupied(true);
 					for(int j = 0; j < graphArray.getVertexList().size();j++) {
 						if(graphArray.getAdjacencyMatrix()[user.getCurrentIsland()][j] != 0 && graphArray.getAdjacencyMatrix()[j][numIsland] == 0) {
@@ -342,14 +339,16 @@ public class PirateChase {
 						if(graphArray.getAdjacencyMatrix()[numIsland][j] != 0) {
 							graphArray.getVertexList().get(j).getElement().setAdyacent(true);
 						}
+						if(graphArray.getAdjacencyMatrix()[numIsland][j] == 0) {
+							graphArray.getVertexList().get(j).getElement().setAdyacent(false);
+						}
 					}
 					graphArray.getVertexList().get(user.getCurrentIsland()).getElement().setOccupied(false);
 					graphArray.getVertexList().get(user.getCurrentIsland()).getElement().setAdyacent(true);
 					user.setEnergy(user.getEnergy()-graphArray.getAdjacencyMatrix()[user.getCurrentIsland()][numIsland]);
 					user.setCurrentIsland(numIsland);
-					System.out.println(graphArray.getVertexList().get(numIsland).getVertexes());
 					
-					checkEnergy(numIsland);
+					checkEnergyMedium(numIsland);
 					
 					
 				}else {
@@ -359,6 +358,7 @@ public class PirateChase {
 		}
 		
 		recalculatePosUserMediumMap(user.getCurrentIsland());
+		recalculatePosMorganMedium(movementsMorgan.remove(movementsMorgan.size()-1));
 		
 		int minEnergy = 0;
 		
@@ -368,7 +368,7 @@ public class PirateChase {
 			int[] output = {7,0/*perdio*/,minEnergy};
 			return output;
 		}
-		if(user.getCurrentIsland()==(graph.getVertexes().size()-1)) {
+		if(user.getCurrentIsland()==(graphArray.getVertexList().size()-1)) {
 			minEnergy = graphArray.floydWarshall()[0][graphArray.getAdjacencyMatrix().length-1];
 			user.setCurrentIsland(0);
 			int[] output = {7,1/*Gano*/,minEnergy};
@@ -442,6 +442,13 @@ public class PirateChase {
 			user.setEnergy(user.getEnergy()+2);
 		}	
 	}
+	
+	private void checkEnergyMedium(int numIsland) {
+		if(graphArray.getVertexList().get(numIsland).getElement().isEnergy()) {
+			graphArray.getVertexList().get(numIsland).getElement().setEnergy(false);
+			user.setEnergy(user.getEnergy()+2);
+		}
+	}
 
 	public void recalculatePosUser(int newIsland) {
 		int x = graph.getVertexes().get(newIsland).getElement().getPosX();
@@ -460,6 +467,14 @@ public class PirateChase {
 		int y = graph.getVertexes().get(newIsland).getElement().getPosY();
 		morgan.movePirate(x+40, y+20);
 		morgan.setEnergy(morgan.getEnergy()-graph.getAdjacencyMatrix()[morgan.getCurrentIsland()][newIsland]);
+		morgan.setCurrentIsland(newIsland);
+	}
+	
+	public void recalculatePosMorganMedium(int newIsland) {
+		int x = graphArray.getVertexList().get(newIsland).getElement().getPosX();
+		int y = graphArray.getVertexList().get(newIsland).getElement().getPosY();
+		morgan.movePirate(x+40, y+20);
+		morgan.setEnergy(morgan.getEnergy()-graphArray.getAdjacencyMatrix()[morgan.getCurrentIsland()][newIsland]);
 		morgan.setCurrentIsland(newIsland);
 	}
 	

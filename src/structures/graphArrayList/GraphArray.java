@@ -1,6 +1,7 @@
 package structures.graphArrayList;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class GraphArray<E> {
 
@@ -166,6 +167,38 @@ public class GraphArray<E> {
 		}
 		
 		return answer;
+	}
+
+	public Integer[] dijkstra(int source) {
+		int[] dist = new int[adyacencyMatrix.length];
+		Integer[] prev = new Integer[adyacencyMatrix.length];
+
+		PriorityQueue<Integer> queue = new PriorityQueue<>();
+
+		for(int i = 0; i < dist.length; i++) {
+			if(i!=source) {
+				dist[i] = 500;
+			}
+			prev[i] = null;
+
+			queue.add(i);
+		}
+
+		while(!queue.isEmpty()) {
+			int u = queue.remove();
+			
+			for(int i = 0; i < adyacencyMatrix.length; i++) {
+				if(adyacencyMatrix[u][i]!=0) {
+					int alt = dist[u] + adyacencyMatrix[u][i];
+					if(alt < dist[i]) {
+						dist[i] = alt;
+						prev[i] = u;
+						queue.add(i);
+					}
+				}
+			}
+		}
+		return prev;
 	}
 	
 }
