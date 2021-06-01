@@ -7,15 +7,17 @@ public class Island {
 	
 	private int posX, posY, width, height;
 	private int islandNumber;
-	private PImage islandLight, islandDark;
+	private PImage islandLight, islandDark, power;
 	private boolean occupied;
 	private boolean adyacent;
+	private boolean powerRecharge;
 	private PApplet app;
 	
 	public Island(int posX, int posY, boolean occupied, boolean adyacent,int islandNumber,PApplet app) {
 		this.app=app;
 		islandLight= app.loadImage("images/island.png");
 		islandDark= app.loadImage("images/darkIsland.png");
+		//power= app.loadImage("/")
 		this.posX = posX;
 		this.posY = posY;
 		width=70;

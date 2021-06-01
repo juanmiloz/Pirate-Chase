@@ -76,81 +76,96 @@ public class PirateChase {
 
 	public void generateMediumMap() {
 		islandsArray.clear();
-		user.setEnergy(15);
-		morgan.setEnergy(12);
-		VertexArray<Island> vt1 = graphArray.createVertex(new Island(0,0,true,false,0,app));
+		user.setEnergy(17);
+		user.setCurrentIsland(0);
+		morgan.setEnergy(17);
+		morgan.setCurrentIsland(0);
+		
+		VertexArray<Island> vt1 = graphArray.createVertex(new Island(71,473,true,false,0,app));
 		graphArray.addVertex(vt1, null, null);
 		
-		VertexArray<Island> vt2 = graphArray.createVertex(new Island(20,0,true,false,0,app));
+		VertexArray<Island> vt2 = graphArray.createVertex(new Island(173,363,false,true,1,app));
 		ArrayList<VertexArray<Island>> connections2 = new ArrayList<VertexArray<Island>>();
 		connections2.add(vt1);
 		int[] weigths2 = {2};
 		graphArray.addVertex(vt2, connections2, weigths2);
 		
-		VertexArray<Island> vt3 = graphArray.createVertex(new Island(40,0,true,false,0,app));
+		VertexArray<Island> vt3 = graphArray.createVertex(new Island(290,472,2,app));
 		ArrayList<VertexArray<Island>> connections3 = new ArrayList<VertexArray<Island>>();
 		connections3.add(vt2);
 		int[] weigths3 = {3};
 		graphArray.addVertex(vt3, connections3, weigths3);
 		
-		VertexArray<Island> vt4 = graphArray.createVertex(new Island(60,0,true,false,0,app));
+		VertexArray<Island> vt4 = graphArray.createVertex(new Island(440,444,3,app));
 		ArrayList<VertexArray<Island>> connections4 = new ArrayList<VertexArray<Island>>();
 		connections4.add(vt3);
+		
+		//AQUI *************
 		int[] weigths4 = {2};
 		graphArray.addVertex(vt4, connections4, weigths4);
 		
-		VertexArray<Island> vt5 = graphArray.createVertex(new Island(80,0,true,false,0,app));
+		VertexArray<Island> vt5 = graphArray.createVertex(new Island(634,451,4,app));
 		ArrayList<VertexArray<Island>> connections5 = new ArrayList<VertexArray<Island>>();
 		connections5.add(vt4);
 		int[] weigths5 = {4};
 		graphArray.addVertex(vt5, connections5, weigths5);
 		
-		VertexArray<Island> vt6 = graphArray.createVertex(new Island(100,0,true,false,0,app));
+		VertexArray<Island> vt6 = graphArray.createVertex(new Island(549,338,5,app));
 		ArrayList<VertexArray<Island>> connections6 = new ArrayList<VertexArray<Island>>();
 		connections6.add(vt5);
 		int[] weigths6 = {1};
 		graphArray.addVertex(vt6, connections6, weigths6);
 		
-		VertexArray<Island> vt7 = graphArray.createVertex(new Island(120,0,true,false,0,app));
+		VertexArray<Island> vt7 = graphArray.createVertex(new Island(78,235,6,app));
 		ArrayList<VertexArray<Island>> connections7 = new ArrayList<VertexArray<Island>>();
 		connections7.add(vt2);
 		int[] weigths7 = {4};
 		graphArray.addVertex(vt7, connections7, weigths7);
 		
-		VertexArray<Island> vt8 = graphArray.createVertex(new Island(140,0,true,false,0,app));
+		VertexArray<Island> vt8 = graphArray.createVertex(new Island(202,155,7,app));
 		ArrayList<VertexArray<Island>> connections8 = new ArrayList<VertexArray<Island>>();
 		connections8.add(vt2);
 		connections8.add(vt7);
 		int[] weigths8 = {3, 5};
 		graphArray.addVertex(vt8, connections8, weigths8);
 		
-		VertexArray<Island> vt9 = graphArray.createVertex(new Island(160,0,true,false,0,app));
+		VertexArray<Island> vt9 = graphArray.createVertex(new Island(335,278,8,app));
 		ArrayList<VertexArray<Island>> connections9 = new ArrayList<VertexArray<Island>>();
 		connections9.add(vt3);
 		int[] weigths9 = {3};
 		graphArray.addVertex(vt9, connections9, weigths9);
 		
-		VertexArray<Island> vt10 = graphArray.createVertex(new Island(180,0,true,false,0,app));
+		VertexArray<Island> vt10 = graphArray.createVertex(new Island(392,156,9,app));
 		ArrayList<VertexArray<Island>> connections10 = new ArrayList<VertexArray<Island>>();
 		connections10.add(vt8);
 		connections10.add(vt9);
 		int[] weigths10 = {7, 4};
 		graphArray.addVertex(vt10, connections10, weigths10);
 		
-		VertexArray<Island> vt11 = graphArray.createVertex(new Island(200,0,true,false,0,app));
+		VertexArray<Island> vt11 = graphArray.createVertex(new Island(522,196,10,app));
 		ArrayList<VertexArray<Island>> connections11 = new ArrayList<VertexArray<Island>>();
 		connections11.add(vt10);
 		connections11.add(vt5);
 		int[] weigths11 = {3, 5	};
 		graphArray.addVertex(vt11, connections11, weigths11);
 		
-		VertexArray<Island> vt12 = graphArray.createVertex(new Island(220,0,true,false,0,app));
+		VertexArray<Island> vt12 = graphArray.createVertex(new Island(575,86,11,app));
 		ArrayList<VertexArray<Island>> connections12 = new ArrayList<VertexArray<Island>>();
 		connections12.add(vt10);
 		connections12.add(vt11);
 		int[] weigths12 = {6, 2};
 		graphArray.addVertex(vt12, connections12, weigths12);
 		islandsArray.addAll(graphArray.getVertexList());
+		
+		
+		/* adaptar a grafo gio
+		int numIsland = user.getCurrentIsland();
+		int x = graph.getVertexes().get(numIsland).getElement().getPosX();
+		int y = graph.getVertexes().get(numIsland).getElement().getPosY();
+		user.movePirate(x-40, y+20);
+		morgan.movePirate(x+45, y+20);*/
+		
+		
 	}
 
 	public void makeMapHard() {
@@ -346,23 +361,6 @@ public class PirateChase {
 	public int getMorganEnergy() {
 		return morgan.getEnergy();
 	}
-
-	public void selectdificult(int dificult) {
-		switch (dificult) {
-		case 1:
-			makeMapEasy();
-		break;
-
-		case 2:
-
-		break; 
-
-		case 3:
-
-		break;
-		}
-	}
-
 
 	public Graph<Island> getGraph() {
 		return graph;
