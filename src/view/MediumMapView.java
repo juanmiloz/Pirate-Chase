@@ -24,7 +24,6 @@ public class MediumMapView {
 
 
 		controller= new ControllerPirateChase(app);
-		controller.makeMapMedium();;
 	}
 	
 	public void drawScreen() {

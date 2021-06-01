@@ -24,7 +24,6 @@ public class HardMapView {
 
 
 		controller= new ControllerPirateChase(app);
-		controller.makeMapHard();
 	}
 	
 	public void drawScreen() {

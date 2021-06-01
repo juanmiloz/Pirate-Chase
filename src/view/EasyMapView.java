@@ -24,7 +24,6 @@ public class EasyMapView {
 
 
 		controller= new ControllerPirateChase(app);
-		controller.makeMapEasy();
 	}
 	
 	public void drawScreen() {

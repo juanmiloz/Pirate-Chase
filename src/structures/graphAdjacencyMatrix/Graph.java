@@ -1,6 +1,7 @@
 package structures.graphAdjacencyMatrix;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 import exception.AmountOfDataException;
 import exception.ConnectioDoesNotExistException;
@@ -100,6 +101,38 @@ public class Graph<E> implements GraphInterface<E>{
 		}
 		
 		return answer;
+	}
+	
+	public Integer[] dijkstra(int source) {
+		int[] dist = new int[adjacencyMatrix.length];
+		Integer[] prev = new Integer[adjacencyMatrix.length];
+
+		PriorityQueue<Integer> queue = new PriorityQueue<>();
+
+		for(int i = 0; i < dist.length; i++) {
+			if(i!=source) {
+				dist[i] = 500;
+			}
+			prev[i] = null;
+
+			queue.add(i);
+		}
+
+		while(!queue.isEmpty()) {
+			int u = queue.remove();
+			
+			for(int i = 0; i < adjacencyMatrix.length; i++) {
+				if(adjacencyMatrix[u][i]!=0) {
+					int alt = dist[u] + adjacencyMatrix[u][i];
+					if(alt < dist[i]) {
+						dist[i] = alt;
+						prev[i] = u;
+						queue.add(i);
+					}
+				}
+			}
+		}
+		return prev;
 	}
 	
 	public int[][] getAdjacencyMatrix(){
