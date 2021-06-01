@@ -57,6 +57,7 @@ public class PirateChase {
 
 
 	private static PirateChase singleInstance;
+	public ArrayList<Integer> movementsMorgan;
 	
 	private PirateChase(PApplet app) {
 		this.app=app;
@@ -64,6 +65,7 @@ public class PirateChase {
 		user = new Pirate(0,0,true,app);
 		morgan = new Pirate(0,0,false,app);
 		graphArray = new GraphArray<Island>();
+		movementsMorgan = new ArrayList<>();
 	}
 	
 	public static PirateChase getInstance(PApplet app) {
@@ -219,13 +221,16 @@ public class PirateChase {
 		int y = graph.getVertexes().get(numIsland).getElement().getPosY();
 		user.movePirate(x-40, y+20);
 		morgan.movePirate(x+45, y+20);
+		
+		Integer[] test = graph.dijkstra(0);
+		setMorganMovements(test);
 	}
 
 	public void makeMapEasy() {
 		islands.clear();
 		user.setEnergy(15);
 		user.setCurrentIsland(0);
-		morgan.setEnergy(12);
+		morgan.setEnergy(13);
 		morgan.setCurrentIsland(0);
 
 		//Vertex 0
@@ -275,6 +280,22 @@ public class PirateChase {
 		int y = graph.getVertexes().get(numIsland).getElement().getPosY();
 		user.movePirate(x-40, y+20);
 		morgan.movePirate(x+45, y+20);
+		
+		Integer[] test = graph.dijkstra(0);
+		setMorganMovements(test);
+	}
+	
+	public void setMorganMovements(Integer [] dijkstraPrev ) {
+		int movement = dijkstraPrev.length-1;
+		movementsMorgan.add(movement);
+		while(movement != 0) {
+			movement=dijkstraPrev[movement];
+			movementsMorgan.add(movement);
+			
+		}
+		for(int i = 0; i < movementsMorgan.size(); i++) {
+			System.out.println(movementsMorgan.get(i));
+		}
 	}
 
 
@@ -391,19 +412,21 @@ public class PirateChase {
 		}
 		
 		recalculatePosUser(user.getCurrentIsland());
+		recalculatePosMorgan(movementsMorgan.remove(movementsMorgan.size()-1));
+		
 		
 		int minEnergy = 0;
 		
-		if(user.getEnergy()<0) {
-			minEnergy = graph.floydWarshall()[0][graph.getAdjacencyMatrix().length-1];
-			user.setCurrentIsland(0);
-			int[] output = {7,0/*perdio*/,minEnergy};
-			return output;
-		}
 		if(user.getCurrentIsland()==(graph.getVertexes().size()-1)) {
 			minEnergy = graph.floydWarshall()[0][graph.getAdjacencyMatrix().length-1];
 			user.setCurrentIsland(0);
 			int[] output = {7,1/*Gano*/,minEnergy};
+			return output;
+		}
+		if(user.getEnergy()<0 || morgan.getCurrentIsland()==graph.getVertexes().size()-1) {
+			minEnergy = graph.floydWarshall()[0][graph.getAdjacencyMatrix().length-1];
+			user.setCurrentIsland(0);
+			int[] output = {7,0/*perdio*/,minEnergy};
 			return output;
 		}
 		int[] output = {0};
@@ -430,6 +453,14 @@ public class PirateChase {
 		int x = graphArray.getVertexList().get(newIsland).getElement().getPosX();
 		int y = graphArray.getVertexList().get(newIsland).getElement().getPosY();
 		user.movePirate(x-40, y+20);
+	}
+		
+	public void recalculatePosMorgan(int newIsland) {
+		int x = graph.getVertexes().get(newIsland).getElement().getPosX();
+		int y = graph.getVertexes().get(newIsland).getElement().getPosY();
+		morgan.movePirate(x+40, y+20);
+		morgan.setEnergy(morgan.getEnergy()-graph.getAdjacencyMatrix()[morgan.getCurrentIsland()][newIsland]);
+		morgan.setCurrentIsland(newIsland);
 	}
 	
 	public int getUserEnergy() {
