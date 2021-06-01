@@ -289,9 +289,6 @@ public class PirateChase {
 			movementsMorgan.add(movement);
 			
 		}
-		for(int i = 0; i < movementsMorgan.size(); i++) {
-			System.out.println(movementsMorgan.get(i));
-		}
 	}
 
 
@@ -395,7 +392,7 @@ public class PirateChase {
 	public void recalculatePosMorgan(int newIsland) {
 		int x = graph.getVertexes().get(newIsland).getElement().getPosX();
 		int y = graph.getVertexes().get(newIsland).getElement().getPosY();
-		morgan.movePirate(x+40, y+20);
+		morgan.movePirate(x+45, y+20);
 		morgan.setEnergy(morgan.getEnergy()-graph.getAdjacencyMatrix()[morgan.getCurrentIsland()][newIsland]);
 		morgan.setCurrentIsland(newIsland);
 	}
