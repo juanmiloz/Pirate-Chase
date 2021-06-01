@@ -8,27 +8,22 @@ import processing.core.PImage;
 public class MediumMapView {
 
 	private PApplet app;
-	private PImage easyMapBackground;
-	private PImage easyMapTemplate;
+	private PImage mediumMap;
+	
 	private PFont font;
 	private ControllerPirateChase controller;
 	
 	public MediumMapView(PApplet app) {
 		this.app = app;
 		
-		easyMapBackground = app.loadImage("images/easyMapBackground.jpg");
-		setEasyMapTemplate(app.loadImage("images/easyMapTemplate.jpg"));
-
+		mediumMap= app.loadImage("images/mediumMap.jpg");
 		font= app.createFont("fonts/MINECRAFT.TTF",25);
-
-
-
 		controller= new ControllerPirateChase(app);
 	}
 	
 	public void drawScreen() {
 		app.background(0);
-		//app.image(easyMapBackground, 0, 0);
+		app.image(mediumMap, 0, 0);
 		controller.drawMediumMap();
 		app.textFont(font);
 		app.fill(0);
@@ -41,12 +36,6 @@ public class MediumMapView {
 		
 	}
 
-	public PImage getEasyMapTemplate() {
-		return easyMapTemplate;
-	}
-
-	public void setEasyMapTemplate(PImage easyMapTemplate) {
-		this.easyMapTemplate = easyMapTemplate;
-	}
+	
 
 }

@@ -39,7 +39,8 @@ public class EndGameView {
 			app.text(message,235,240);
 		}
 		
-		app.text(minEnergy, 475, 350);
+		app.textFont(font,83);
+		app.text(minEnergy, 445, 350);
 	}
 	
 	public int switchScreen() {

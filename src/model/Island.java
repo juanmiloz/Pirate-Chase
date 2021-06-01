@@ -7,15 +7,17 @@ public class Island {
 	
 	private int posX, posY, width, height;
 	private int islandNumber;
-	private PImage islandLight, islandDark;
+	private PImage islandLight, islandDark, powerImg;
 	private boolean occupied;
 	private boolean adyacent;
+	private boolean energy;
 	private PApplet app;
 	
 	public Island(int posX, int posY, boolean occupied, boolean adyacent,int islandNumber,PApplet app) {
 		this.app=app;
 		islandLight= app.loadImage("images/island.png");
 		islandDark= app.loadImage("images/darkIsland.png");
+		powerImg= app.loadImage("/images/energy.png");
 		this.posX = posX;
 		this.posY = posY;
 		width=70;
@@ -29,6 +31,7 @@ public class Island {
 		this.app=app;
 		islandLight= app.loadImage("images/island.png");
 		islandDark= app.loadImage("images/darkIsland.png");
+		powerImg= app.loadImage("/images/energy.png");
 		this.posX = posX;
 		this.posY = posY;
 		width=70;
@@ -57,6 +60,10 @@ public class Island {
 		
 		}else {
 			app.image(islandDark, posX, posY,width,height);
+		}
+		
+		if(energy) {
+			app.image(powerImg, posX-40, posY+20,50,50);
 		}
 		
 	}
@@ -118,12 +125,13 @@ public class Island {
 	public void setIslandNumber(int islandNumber) {
 		this.islandNumber = islandNumber;
 	}
-	
-	
-	
-	
-	
-	
 
+	public boolean isEnergy() {
+		return energy;
+	}
+
+	public void setEnergy(boolean energy) {
+		this.energy = energy;
+	}
 	
 }
