@@ -11,17 +11,28 @@ public class Graph<E> implements GraphInterface<E>{
 
 	private int [][] adjacencyMatrix;
 	private ArrayList<Vertex<E>> vertexes;
-	
+	/**
+	 * Name: Graph
+	 * Constructor of Graph . <br>
+	 */
 	public Graph() {
 		adjacencyMatrix = new int[0][0];
 		vertexes = new ArrayList<>();
 	}
-	
+	/**
+	 * Name: Graph
+	 * Constructor of Graph . <br>
+	 * @param adjacencyMatrix - Matrix adjacency - adjacencyMatrix == int[][]
+	 * @param vertexes - ArrayList<Vertex<E>>
+	 */
 	public Graph(int[][] adjacencyMatrix, ArrayList<Vertex<E>> vertexes) {
 		this.adjacencyMatrix = adjacencyMatrix;
 		this.vertexes = vertexes;
 	}
-	
+	/**
+	 * Name: addVertex
+	 * Method to add a new vertex. <br>
+	 */
 	@Override
 	public void addVertex(E element, int[]edges, int[]weights) throws EdgeInvalidException, AmountOfDataException{
 		if(edges.length == weights.length) {
@@ -39,7 +50,10 @@ public class Graph<E> implements GraphInterface<E>{
 			throw new AmountOfDataException();
 		}
 	}
-	
+	/*
+	 * Name: enlargeMatrix
+	 * Method to large matrix. <br>
+	 */
 	@Override
 	public void enlargeMatrix() {
 		int n = adjacencyMatrix.length;
@@ -52,16 +66,35 @@ public class Graph<E> implements GraphInterface<E>{
 			}
 		}
 	}
-	
+	/**
+	 * Name: addEdge
+	 * Method to add a new edge. <br>
+	 * @param numVertex1 - numVertex1 vertex number 1 - numVertex1 = int
+	 * @param numVertex2 - numVertex2 vertex number 2 - numVertex2 = int
+	 * @param weight - weight of edge - weight == int
+	 */
 	public void addEdge(int numVertex1, int numVertex2, int weight) {
 		adjacencyMatrix[numVertex1][numVertex2]=weight;
 		adjacencyMatrix[numVertex2][numVertex1]=weight;
 	}
-	
+	/**
+	 * Name: getWeight
+	 * Method to get weight of graph. <br>
+	 * @param numVertex1 - numVertex1 vertex number 1 - numVertex1 = int
+	 * @param numVertex2 - numVertex2 vertex number 2 - numVertex2 = int
+	 * @return a int representing weight of the graph
+	 */
 	public int getWeight(int vertex1, int vertex2) {
 		return adjacencyMatrix[vertex1][vertex2];
 	}
-	
+	/**
+	 * Name: getConection
+	 * Method to get connection of graph. <br>
+	 * @param numVertex1 - numVertex1 vertex number 1 - numVertex1 = int
+	 * @param numVertex2 - numVertex2 vertex number 2 - numVertex2 = int
+	 * @return Vertex<E>
+	 * @throws ConnectioDoesNotExistException
+	 */
 	public Vertex<E> getConection(int vertex1, int vertex2) throws ConnectioDoesNotExistException{
 		Vertex<E> answer = null;
 		if(adjacencyMatrix[vertex1][vertex2]!= 0) {
@@ -71,7 +104,11 @@ public class Graph<E> implements GraphInterface<E>{
 		}
 		return answer;
 	}
-	
+	/**
+	 * Name: floydWarshall
+	 * Method to floyd warshall. <br>
+	 * @return a int[][] representing matrix floyd warshall
+	 */
 	public int[][] floydWarshall(){
 		int[][] matrix = adjacencyMatrix.clone(); 
 		int[][] answer = new int[matrix.length][matrix.length];
@@ -102,7 +139,12 @@ public class Graph<E> implements GraphInterface<E>{
 		
 		return answer;
 	}
-	
+	/**
+	 * Name: dijkstra
+	 * Method to dijkstra. <br>
+	 * @param source == int.
+	 * @return Integer[]
+	 */
 	public Integer[] dijkstra(int source) {
 		int[] dist = new int[adjacencyMatrix.length];
 		Integer[] prev = new Integer[adjacencyMatrix.length];
@@ -134,19 +176,35 @@ public class Graph<E> implements GraphInterface<E>{
 		}
 		return prev;
 	}
-	
+	/**
+	 * Name: getAdjacencyMatrix
+	 * Method to get adjacency matrix. <br>
+	 * @return a int[][] matrix representing adjacency
+	 */
 	public int[][] getAdjacencyMatrix(){
 		return adjacencyMatrix;
 	}
-
+	/**
+	 * Name: getVertexes
+	 * Method to get vertexes. <br>
+	 * @return ArrayList<Vertex<E>>
+	 */
 	public ArrayList<Vertex<E>> getVertexes() {
 		return vertexes;
 	}
-
+	/**
+	 * Name: setVertexes
+	 * Method to update vertexes. <br>
+	 * @param vertexes == ArrayList<Vertex<E>>
+	 */
 	public void setVertexes(ArrayList<Vertex<E>> vertexes) {
 		this.vertexes = vertexes;
 	}
-
+	/**
+	 * Name: setAdjacencyMatrix
+	 * Method to update adjacency matrix. <br>
+	 * @param adjacencyMatrix == int[][]
+	 */
 	public void setAdjacencyMatrix(int[][] adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 	}

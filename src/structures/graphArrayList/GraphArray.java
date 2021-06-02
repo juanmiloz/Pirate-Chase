@@ -9,21 +9,37 @@ public class GraphArray<E> {
 	private int islandsCreated;
 	private int[][] adyacencyMatrix;
 	private ArrayList<VertexArray<E>> vertexList = new ArrayList<VertexArray<E>>();
-	
+	/**
+	 * Name: GraphArray
+	 * Constructor of class GraphArray . <br>
+	 */
 	public GraphArray() {
 		this.root = null;
 		islandsCreated = 0;
 		adyacencyMatrix = new int[0][0];
 	}
-
+	/**
+	 * Name: getRoot
+	 * Method to get root of graph. <br>
+	 * @return  VertexArray<E>
+	 */
 	public VertexArray<E> getRoot() {
 		return root;
 	}
-
+	/**
+	 * Name: setRoot
+	 * Method to update root of graph. <br>
+	 * @param root ertexArray<E>
+	 */
 	public void setRoot(VertexArray<E> root) {
 		this.root = root;
 	}
-	
+	/**
+	 * Name: setRoot
+	 * Method to create vertex. <br>
+	 * @param island - E island.
+	 * @return VertexArray<E>
+	 */
 	public VertexArray<E> createVertex(E island) {
 		islandsCreated++;
 		VertexArray<E> vertex = new VertexArray<>(island, islandsCreated);
@@ -43,7 +59,13 @@ public class GraphArray<E> {
 		adyacencyMatrix = newMatrix;
 		return vertex;
 	}
-	
+	/**
+	 * Name: addVertex
+	 * Method to add a new vertex. <br>
+	 * @param vertex - new vertex - vertex == VertexArray<E>
+	 * @param connections - ArrayList<VertexArray<E>>
+	 * @param weigths == int[]
+	 */
 	public void addVertex(VertexArray<E> vertex, ArrayList<VertexArray<E>> connections, int[] weigths) {
 		if(root == null) {
 			root = vertex;
@@ -53,7 +75,15 @@ public class GraphArray<E> {
 			addVertexHelper(root, connections, weigths, vertex);
 		}
 	}
-	
+	/**
+	 * Name: addVertexHelper
+	 * Method to add a helper vertex. <br>
+	 * @param current VertexArray<E>
+	 * @param connections ArrayList<VertexArray<E>>
+	 * @param weigths int[]
+	 * @param newVertex VertexArray<E>
+	 * @return a int 
+	 */
 	private int addVertexHelper(VertexArray<E> current, ArrayList<VertexArray<E>> connections, int[] weigths, VertexArray<E> newVertex) {
 		ArrayList<Partner<E>> connections_vertex = current.getVertexes();
 		if(connections.size() == 0 || current.isVisited()) {
@@ -117,27 +147,51 @@ public class GraphArray<E> {
 		}
 		return 0;
 	}*/
-
+	/**
+	 * Name: getIslandsCreated
+	 * Method to get islands. <br>
+	 * @return int 
+	 */
 	public int getIslandsCreated() {
 		return islandsCreated;
 	}
-
+	/**
+	 * Name: setIslandsCreated
+	 * Method to updates islands. <br>
+	 * @param islandsCreated
+	 */
 	public void setIslandsCreated(int islandsCreated) {
 		this.islandsCreated = islandsCreated;
 	}
-
+	/**
+	 * Name: getVertexList
+	 * Method to get vertex list. <br>
+	 * @return ArrayList<VertexArray<E>>
+	 */
 	public ArrayList<VertexArray<E>> getVertexList() {
 		return vertexList;
 	}
-
+	/**
+	 * Name: setVertexList
+	 * Method to update vertex list. <br>
+	 * @param vertexList
+	 */
 	public void setVertexList(ArrayList<VertexArray<E>> vertexList) {
 		this.vertexList = vertexList;
 	}
-
+	/**
+	 * Name: getAdjacencyMatrix
+	 * Method to get adjacency matrix. <br>
+	 * @return int[][]
+	 */
 	public int[][] getAdjacencyMatrix() {
 		return adyacencyMatrix;
 	}
-
+	/**
+	 * Name: floydWarshall
+	 * Method floydWarshall. <br>
+	 * @return int[][]
+	 */
 	public int[][] floydWarshall(){
 		int[][] matrix = adyacencyMatrix.clone(); 
 		int[][] answer = new int[matrix.length][matrix.length];
@@ -168,7 +222,12 @@ public class GraphArray<E> {
 		
 		return answer;
 	}
-
+	/**
+	 * Name: dijkstra
+	 * Method dijkstra. <br>
+	 * @param source int
+	 * @return Integer[]
+	 */
 	public Integer[] dijkstra(int source) {
 		int[] dist = new int[adyacencyMatrix.length];
 		Integer[] prev = new Integer[adyacencyMatrix.length];
