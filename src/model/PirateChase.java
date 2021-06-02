@@ -396,16 +396,16 @@ public class PirateChase {
 		
 		int minEnergy = 0;
 		
-		if(user.getEnergy()<0) {
-			minEnergy = graphArray.floydWarshall()[0][graphArray.getAdjacencyMatrix().length-1];
-			user.setCurrentIsland(0);
-			int[] output = {7,0/*perdio*/,minEnergy};
-			return output;
-		}
 		if(user.getCurrentIsland()==(graphArray.getVertexList().size()-1)) {
 			minEnergy = graphArray.floydWarshall()[0][graphArray.getAdjacencyMatrix().length-1];
 			user.setCurrentIsland(0);
 			int[] output = {7,1/*Gano*/,minEnergy};
+			return output;
+		}
+		if(user.getEnergy()<0 || morgan.getCurrentIsland()==graphArray.getVertexList().size()-1) {
+			minEnergy = graphArray.floydWarshall()[0][graphArray.getAdjacencyMatrix().length-1];
+			user.setCurrentIsland(0);
+			int[] output = {7,0/*perdio*/,minEnergy};
 			return output;
 		}
 		int[] output = {0};
