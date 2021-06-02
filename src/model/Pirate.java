@@ -15,7 +15,12 @@ public class Pirate {
 	/**
 	 * Name: Pirate
      * Constructor method of a Pirate. <br>
+	 * @param posX - Position in the map - posX = int
+	 * @param posY - Position in the map - posY = int
+	 * @param type - Pirate type - type = boolean
+	 * @param app - PApplet
 	 */
+
 	public Pirate(int posX, int posY, boolean type,PApplet app) {
 		energy = 0;
 		currentIsland = 0;

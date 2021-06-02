@@ -7,7 +7,11 @@ public class MenuView {
 
 	private PApplet app;
 	private PImage menu,menuInfo,menuPlay;
-	
+	/**
+	 * Name: MenuView
+	 * Constructor of MenuView . <br>
+	 * @param app
+	 */
 	public MenuView(PApplet app) {
 		this.app = app; 
 		
@@ -15,7 +19,10 @@ public class MenuView {
 		menuInfo= app.loadImage("images/menuInfo.jpg");
 		menuPlay= app.loadImage("images/menuPlay.jpg");
 	}
-	
+	/**
+	 * Name: drawScreen
+	 * Method to draw a new screen . <br>
+	 */
 	public void drawScreen() {
 		app.background(0);
 		
@@ -28,7 +35,11 @@ public class MenuView {
 			app.image(menu,0,0);
 		}
 	}
-	
+	/**
+	 * Name: switchScreen
+	 * Method to switch screen. <br>
+	 * @return integer representing number of screen
+	 */
 	public int switchScreen() {
 		int screen=1;
 		if(app.mouseX>190 && app.mouseX<360 && app.mouseY>390 && app.mouseY<460) {

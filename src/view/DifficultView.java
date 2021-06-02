@@ -9,7 +9,11 @@ public class DifficultView {
 	private PApplet app;
 	private PImage selectDifficulty, selectDifficultyNoob, selectDifficultyNormal, selectDifficultyPro;
 	private ControllerPirateChase controllerPirateChase;
-
+	/**
+	 * Name: DifficultView
+	 * Constructor of difficult view. <br>
+	 * @param app
+	 */
 	public DifficultView(PApplet app) {
 		this.app = app;
 		controllerPirateChase = new ControllerPirateChase(app);
@@ -19,7 +23,10 @@ public class DifficultView {
 		selectDifficultyNormal = app.loadImage("images/selectDifficultyNormal.jpg");
 		selectDifficultyPro = app.loadImage("images/selectDifficultyPro.jpg");
 	}
-	
+	/**
+	 * Name: drawScreen
+	 * Method to draw a new screen . <br>
+	 */
 	public void drawScreen() {
 		app.background(0);
 		
@@ -33,7 +40,11 @@ public class DifficultView {
 			app.image(selectDifficulty,0,0);
 		}
 	}
-	
+	/**
+	 * Name: switchScreen
+	 * Method to switch screen. <br>
+	 * @return integer representing number of screen
+	 */
 	public int switchScreen() {
 		int screen = 3;
 		if(app.mouseX>290 && app.mouseX<520 && app.mouseY>244 && app.mouseY<318) {

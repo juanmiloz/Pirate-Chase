@@ -9,7 +9,11 @@ public class EndGameView {
 	private PApplet app;
 	private PImage endGameImage,endGameExit, endGameMenu;
 	private PFont font;
-	
+	/**
+	 * Name: EndGameView
+	 * Constructor of EndGameView. <br>
+	 * @param app
+	 */
 	public EndGameView(PApplet app) {
 		this.app = app;
 		
@@ -18,7 +22,12 @@ public class EndGameView {
 		this.endGameMenu = app.loadImage("images/endGameMenu.jpg");
 		this.font= app.createFont("fonts/MINECRAFT.TTF",25);
 	}
-	
+	/**
+	 * Name: drawScreen
+	 * Method to draw a new screen . <br>
+	 * @param message - Message == string.
+	 * @param minEnergy - Minimun energy - Min energy == int
+	 */
 	public void drawScreen(String message, int minEnergy) {
 		app.background(0);
 		
@@ -42,7 +51,11 @@ public class EndGameView {
 		app.textFont(font,83);
 		app.text(minEnergy, 445, 350);
 	}
-	
+	/**
+	 * Name: switchScreen
+	 * Method to switch screen. <br>
+	 * @return integer representing number of screen
+	 */
 	public int switchScreen() {
 		if(app.mouseX>193 && app.mouseX<348 && app.mouseY>461 && app.mouseY<518) {
 			return 1; 

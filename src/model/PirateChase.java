@@ -58,7 +58,11 @@ public class PirateChase {
 
 	private static PirateChase singleInstance;
 	public ArrayList<Integer> movementsMorgan;
-	
+	/**
+	 * Name: PirateChase
+     * Constructor method of a PirateChase. <br>
+	 * @param app
+	 */
 	private PirateChase(PApplet app) {
 		this.app=app;
 		setGraph(null);
@@ -67,7 +71,12 @@ public class PirateChase {
 		graphArray = new GraphArray<Island>();
 		movementsMorgan = new ArrayList<>();
 	}
-	
+	/**
+	 * Name: getInstance
+     * Method of get instance by PApplet. <br>
+	 * @param app
+	 * @return PirateChase representing the instance
+	 */
 	public static PirateChase getInstance(PApplet app) {
 		if(singleInstance == null) {
 			singleInstance = new PirateChase(app);
@@ -75,7 +84,10 @@ public class PirateChase {
 		return singleInstance;
 	}
 
-
+	/**
+	 * Name: generateMediumMap
+	 * Method of create a medium map. <br>
+	 */
 	public void generateMediumMap() {
 		islandsArray.clear();
 		user.setEnergy(17);
@@ -169,7 +181,10 @@ public class PirateChase {
 		setMorganMovements(test);
 		
 	}
-
+	/**
+	 * Name: makeMapHard
+	 * Method of create a hard map. <br>
+	 */
 	public void makeMapHard() {
 		islands.clear();
 		user.setEnergy(32);
@@ -221,7 +236,10 @@ public class PirateChase {
 		Integer[] test = graph.dijkstra(0);
 		setMorganMovements(test);
 	}
-
+	/**
+	 * Name: makeMapEasy
+	 * Method of create a easy map. <br>
+	 */
 	public void makeMapEasy() {
 		islands.clear();
 		user.setEnergy(15);
@@ -280,7 +298,11 @@ public class PirateChase {
 		Integer[] test = graph.dijkstra(0);
 		setMorganMovements(test);
 	}
-	
+	/**
+	 * Name: setMorganMovements
+	 * Method of update morgan's movements. <br>
+	 * @param dijkstraPrev
+	 */
 	public void setMorganMovements(Integer [] dijkstraPrev ) {
 		int movement = dijkstraPrev.length-1;
 		movementsMorgan.add(movement);
@@ -291,7 +313,10 @@ public class PirateChase {
 		}
 	}
 
-
+	/**
+	 * Name: drawEasyMap
+	 * Method of draw easy map. <br>
+	 */
 	public void drawEasyMap() {	
 		for (int i = 0; i < islands.size(); i++) {
 			graph.getVertexes().get(i).getElement().drawIsland();
@@ -300,7 +325,10 @@ public class PirateChase {
 		user.drawPirate();
 		morgan.drawPirate();
 	}
-	
+	/**
+	 * Name: drawHardMap
+	 * Method of draw hard map. <br>
+	 */
 	public void drawHardMap() {	
 		for (int i = 0; i < islands.size(); i++) {
 			islands.get(i).getElement().drawIsland();
@@ -308,7 +336,10 @@ public class PirateChase {
 		user.drawPirate();
 		morgan.drawPirate();
 	}
-	
+	/**
+	 * Name: drawMediumMap
+	 * Method of draw medium map. <br>
+	 */
 	public void drawMediumMap() {
 		for (int i = 0; i < islandsArray.size(); i++) {
 			islandsArray.get(i).getElement().drawIsland();
@@ -316,7 +347,13 @@ public class PirateChase {
 		user.drawPirate();
 		morgan.drawPirate();
 	}
-	
+	/**
+	 * Name: clickOnIslandMedium
+	 * Method to get click in the island. <br>
+	 * @param mouseX - Position click - MouseX = int
+	 * @param mouseY - Position click - MouseY = int
+	 * @return int[] representing array to clicked.
+	 */
 	public int[] clickOnIslandMedium(int mouseX, int mouseY) {
 		for (int i = 0; i < islandsArray.size(); i++) {
 			if(mouseX>islandsArray.get(i).getElement().getPosX() 
@@ -374,7 +411,13 @@ public class PirateChase {
 		int[] output = {0};
 		return output;
 	}
-	
+	/**
+	 * Name: clickOnIsland
+	 * Method to get click in the island. <br>
+	 * @param mouseX - Position click - MouseX = int
+	 * @param mouseY - Position click - MouseY = int
+	 * @return int[] representing array to clicked.
+	 */
 	public int[] clickOnIsland(int mouseX,int mouseY) {
 		for (int i = 0; i < islands.size(); i++) {
 			if(mouseX>islands.get(i).getElement().getPosX() 
@@ -432,33 +475,53 @@ public class PirateChase {
 	
 	
 	
-	
+	/**
+	 * Name: checkEnergy
+	 * Method to checking if island have energy. <br>
+	 * @param numIsland - island's number - numIslands == int
+	 */
 	private void checkEnergy(int numIsland) {
 		if(graph.getVertexes().get(numIsland).getElement().isEnergy()) {
 			graph.getVertexes().get(numIsland).getElement().setEnergy(false);
 			user.setEnergy(user.getEnergy()+2);
 		}	
 	}
-	
+	/**
+	 * Name: checkEnergyMedium
+	 * Method to checking if island have energy. <br>
+	 * @param numIsland - island's number - numIslands == int
+	 */
 	private void checkEnergyMedium(int numIsland) {
 		if(graphArray.getVertexList().get(numIsland).getElement().isEnergy()) {
 			graphArray.getVertexList().get(numIsland).getElement().setEnergy(false);
 			user.setEnergy(user.getEnergy()+2);
 		}
 	}
-
+	/**
+	 * Name: recalculatePosUser
+	 * Method to calculate position of user. <br>
+	 * @param newIsland - new island to go - newIland = int
+	 */
 	public void recalculatePosUser(int newIsland) {
 		int x = graph.getVertexes().get(newIsland).getElement().getPosX();
 		int y = graph.getVertexes().get(newIsland).getElement().getPosY();
 		user.movePirate(x-40, y+20);
 	}
-	
+	/**
+	 * Name: recalculatePosUserMediumMap
+	 * Method to calculate position of user. <br>
+	 * @param newIsland - new island to go - newIland = int
+	 */
 	public void recalculatePosUserMediumMap(int newIsland) {
 		int x = graphArray.getVertexList().get(newIsland).getElement().getPosX();
 		int y = graphArray.getVertexList().get(newIsland).getElement().getPosY();
 		user.movePirate(x-40, y+20);
 	}
-		
+	/**
+	 * Name: recalculatePosMorgan
+	 * Method to calculate position of morgan. <br>
+	 * @param newIsland - new island to go - newIland = int
+	 */
 	public void recalculatePosMorgan(int newIsland) {
 		int x = graph.getVertexes().get(newIsland).getElement().getPosX();
 		int y = graph.getVertexes().get(newIsland).getElement().getPosY();
@@ -466,7 +529,11 @@ public class PirateChase {
 		morgan.setEnergy(morgan.getEnergy()-graph.getAdjacencyMatrix()[morgan.getCurrentIsland()][newIsland]);
 		morgan.setCurrentIsland(newIsland);
 	}
-	
+	/**
+	 * Name: recalculatePosMorganMedium
+	 * Method to calculate position of morgan. <br>
+	 * @param newIsland - new island to go - newIland = int
+	 */
 	public void recalculatePosMorganMedium(int newIsland) {
 		int x = graphArray.getVertexList().get(newIsland).getElement().getPosX();
 		int y = graphArray.getVertexList().get(newIsland).getElement().getPosY();
@@ -474,30 +541,54 @@ public class PirateChase {
 		morgan.setEnergy(morgan.getEnergy()-graphArray.getAdjacencyMatrix()[morgan.getCurrentIsland()][newIsland]);
 		morgan.setCurrentIsland(newIsland);
 	}
-	
+	/**
+	 * Name: getUserEnergy
+	 * Method to get user's energy. <br>
+	 * @return int representing user´s energy
+	 */
 	public int getUserEnergy() {
 		return user.getEnergy();
 	}
-	
+	/**
+	 * Name: getMorganEnergy
+	 * Method to get morgan's energy. <br>
+	 * @return int representing morgan´s energy
+	 */
 	public int getMorganEnergy() {
 		return morgan.getEnergy();
 	}
-
+	/**
+	 * Name: getGraph
+	 * Method to get the graph. <br>
+	 * @return Graph<Islands>
+	 */
 	public Graph<Island> getGraph() {
 		return graph;
 	}
 
-
+	/**
+	 * Name: setGraph
+	 * Method to update graph. <br>
+	 * @param graph
+	 */
 	public void setGraph(Graph<Island> graph) {
 		this.graph = graph;
 	}
 
-
+	/**
+	 * Name: getIslandsArray
+	 * Method to get arrays of islands<br>
+	 * @return ArrayList<VertexArray<Island>>
+	 */
 	public ArrayList<VertexArray<Island>> getIslandsArray() {
 		return islandsArray;
 	}
 
-
+	/**
+	 * Name: setIslandsArray
+	 * Method to update islands array. <br>
+	 * @param islandsArray
+	 */
 	public void setIslandsArray(ArrayList<VertexArray<Island>> islandsArray) {
 		this.islandsArray = islandsArray;
 	}
