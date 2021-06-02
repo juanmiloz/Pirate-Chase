@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import model.Island;
 
-public class GraphTest {
+public class GraphArrayTest {
 	
 	private GraphArray<Island> setupScenary1() {
 		GraphArray<Island> graph = new GraphArray<Island>();
