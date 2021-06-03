@@ -3,7 +3,7 @@ package structures.graphArrayList;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-public class GraphArray<E> {
+public class GraphArray<E> implements GraphArrayInterface<E> {
 
 	VertexArray<E> root;
 	private int islandsCreated;
@@ -40,6 +40,7 @@ public class GraphArray<E> {
 	 * @param island - E island.
 	 * @return VertexArray<E>
 	 */
+	@Override
 	public VertexArray<E> createVertex(E island) {
 		islandsCreated++;
 		VertexArray<E> vertex = new VertexArray<>(island, islandsCreated);
@@ -259,5 +260,5 @@ public class GraphArray<E> {
 		}
 		return prev;
 	}
-	
+
 }
