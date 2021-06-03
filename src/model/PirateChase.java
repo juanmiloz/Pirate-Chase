@@ -396,7 +396,7 @@ public class PirateChase {
 		
 		int minEnergy = 0;
 		
-		if(user.getCurrentIsland()==(graphArray.getVertexList().size()-1)) {
+		if(user.getEnergy()>=0 && user.getCurrentIsland()==(graphArray.getVertexList().size()-1)) {
 			minEnergy = graphArray.floydWarshall()[0][graphArray.getAdjacencyMatrix().length-1];
 			user.setCurrentIsland(0);
 			int[] output = {7,1/*Gano*/,minEnergy};
@@ -446,7 +446,7 @@ public class PirateChase {
 					
 					
 				}else {
-					System.err.println("No es adyacente	");
+					System.err.println("No es adyacente");
 				}
 			}
 		}
@@ -457,7 +457,7 @@ public class PirateChase {
 		
 		int minEnergy = 0;
 		
-		if(user.getCurrentIsland()==(graph.getVertexes().size()-1)) {
+		if(user.getEnergy()>=0 && user.getCurrentIsland()==(graph.getVertexes().size()-1)) {
 			minEnergy = graph.floydWarshall()[0][graph.getAdjacencyMatrix().length-1];
 			user.setCurrentIsland(0);
 			int[] output = {7,1/*Gano*/,minEnergy};
