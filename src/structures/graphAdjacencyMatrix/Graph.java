@@ -73,6 +73,7 @@ public class Graph<E> implements GraphInterface<E>{
 	 * @param numVertex2 - numVertex2 vertex number 2 - numVertex2 = int
 	 * @param weight - weight of edge - weight == int
 	 */
+	@Override
 	public void addEdge(int numVertex1, int numVertex2, int weight) {
 		adjacencyMatrix[numVertex1][numVertex2]=weight;
 		adjacencyMatrix[numVertex2][numVertex1]=weight;
@@ -84,6 +85,7 @@ public class Graph<E> implements GraphInterface<E>{
 	 * @param numVertex2 - numVertex2 vertex number 2 - numVertex2 = int
 	 * @return a int representing weight of the graph
 	 */
+	@Override
 	public int getWeight(int vertex1, int vertex2) {
 		return adjacencyMatrix[vertex1][vertex2];
 	}
@@ -95,6 +97,7 @@ public class Graph<E> implements GraphInterface<E>{
 	 * @return Vertex<E>
 	 * @throws ConnectioDoesNotExistException
 	 */
+	@Override
 	public Vertex<E> getConection(int vertex1, int vertex2) throws ConnectioDoesNotExistException{
 		Vertex<E> answer = null;
 		if(adjacencyMatrix[vertex1][vertex2]!= 0) {
@@ -109,6 +112,7 @@ public class Graph<E> implements GraphInterface<E>{
 	 * Method to floyd warshall. <br>
 	 * @return a int[][] representing matrix floyd warshall
 	 */
+	@Override
 	public int[][] floydWarshall(){
 		int[][] matrix = adjacencyMatrix.clone(); 
 		int[][] answer = new int[matrix.length][matrix.length];
@@ -145,6 +149,7 @@ public class Graph<E> implements GraphInterface<E>{
 	 * @param source == int.
 	 * @return Integer[]
 	 */
+	@Override
 	public Integer[] dijkstra(int source) {
 		int[] dist = new int[adjacencyMatrix.length];
 		Integer[] prev = new Integer[adjacencyMatrix.length];
