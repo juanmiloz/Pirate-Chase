@@ -37,6 +37,31 @@ public class GraphTest {
 		return matrix;
 	}
 	
+	public int[][] setupScenary4(){
+		int[][] matrix = {
+				{0,3,7},
+				{3,0,2},
+				{4,8,0}
+		};
+		return matrix;
+	}
+	
+	public int[][] setupScenary5(){
+		int[][] matrix = {
+			{0, 4, 3, 7, 0, 0, 0, 0, 0, 0},
+			{4, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+			{3, 0, 0, 3, 0, 0, 0, 0, 0, 0},
+			{7, 0, 3, 0, 3, 5, 3, 4, 0, 0},
+			{0, 1, 0, 3, 0, 0, 0, 5, 0, 0},
+			{0, 0, 0, 5, 0, 0, 0, 0, 5, 0},
+			{0, 0, 0, 3, 0, 0, 0, 0, 5, 4},
+			{0, 0, 0, 4, 5, 0, 0, 0, 0, 6},
+			{0, 0, 0, 0, 0, 5, 5, 0, 0, 3},
+			{0, 0, 0, 0, 0, 0, 4, 6, 3, 0}
+		};
+		return matrix;
+	}
+	
 	@Test
 	public void testGraph() {
 		Graph<Integer> graph = new Graph<>();
@@ -111,5 +136,29 @@ public class GraphTest {
 		Graph<Island> graph = new Graph<>(matrix,vertexes);
 		
 		assertEquals(graph.getVertexes().get(2), graph.getConection(0,2));
+	}
+	
+	@Test
+	public void floydWarshall() {
+		int[][] matrix = setupScenary4();
+		Graph graph = new Graph(matrix, null);
+		
+		int[][]expected = {
+				{0,3,5},
+				{3,0,2},
+				{4,7,0}
+		};
+		
+		assertArrayEquals(expected, graph.floydWarshall());
+	}
+	
+	@Test
+	public void dijkstra() {
+		int[][] matrix = setupScenary5();
+		Graph graph = new Graph(matrix, null);
+		
+		Integer[] expected = {null,0,0,2,1,3,3,3,6,6};
+		
+		assertArrayEquals(expected, graph.dijkstra(0));
 	}
 }

@@ -17,7 +17,6 @@ public class PirateChase {
 	private PApplet app;
 	
 
-
 	//Map number 1 (Easy)
 	private int[][] mapEasy = {
 			//    0	 1  2  3  4  5  6  7  8  9
@@ -591,5 +590,18 @@ public class PirateChase {
 	 */
 	public void setIslandsArray(ArrayList<VertexArray<Island>> islandsArray) {
 		this.islandsArray = islandsArray;
+	}
+	
+	public Pirate getUser() {
+		return user;
+	}
+	public void setUser(Pirate user) {
+		this.user = user;
+	}
+	public Pirate getMorgan() {
+		return morgan;
+	}
+	public void setMorgan(Pirate morgan) {
+		this.morgan = morgan;
 	}
 }
